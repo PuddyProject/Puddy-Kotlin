@@ -1,0 +1,32 @@
+server:
+  port: 8080
+
+spring:
+  profiles:
+    active: local
+  data:
+    redis:
+      host: redis
+      port: 6379
+      url:
+
+
+  jpa:
+    show-sql: true
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+
+jasypt:
+  encryptor:
+    password: ${JASYPT_PASSWORD}
+
+
+cloud:
+  aws:
+    credentials:
+      access-key: ENC(ZFzUxciYHxl052zDuBCdKvUP4JqxWE/u/NPwgwVs+9I=)
+      secret-key: ENC(yqOZRKYmMEVDsqIrNEiJfVOfPp8szSnjQWvuwfj6wUQxw2iDjtMmpoNVFRhcKD1WUV+vmkjGEX0=)
+    region:
+        static: ap-northeast-2
