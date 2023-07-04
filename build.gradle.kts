@@ -1,16 +1,16 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("org.springframework.boot") version "3.1.0"
+    id("org.springframework.boot") version "3.1.1"
     id("io.spring.dependency-management") version "1.1.0"
     id("org.asciidoctor.jvm.convert") version "3.3.2"
     id ("org.jetbrains.kotlin.plugin.allopen") version "1.8.21"
 
-    kotlin("jvm") version "1.8.21"
-    kotlin("plugin.spring") version "1.8.21"
-    kotlin("plugin.jpa") version "1.8.21"
+    kotlin("jvm") version "1.8.22"
+    kotlin("plugin.spring") version "1.8.22"
+    kotlin("plugin.jpa") version "1.8.22"
 
-    kotlin("kapt") version "1.8.21"
+    kotlin("kapt") version "1.8.22"
 }
 
 group = "world"
@@ -55,11 +55,6 @@ dependencies {
     implementation ("com.auth0:java-jwt:3.18.3")
     implementation ("io.jsonwebtoken:jjwt:0.9.1")
     implementation ("com.nimbusds:nimbus-jose-jwt:9.31")
-
-
-    //S3
-    implementation("io.awspring.cloud:spring-cloud-starter-aws:2.4.4")
-    implementation("javax.xml.bind:jaxb-api:2.3.1")
 }
 
 tasks.withType<KotlinCompile> {

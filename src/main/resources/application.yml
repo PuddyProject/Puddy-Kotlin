@@ -22,11 +22,3 @@ jasypt:
   encryptor:
     password: ${JASYPT_PASSWORD}
 
-
-cloud:
-  aws:
-    credentials:
-      access-key: ENC(ZFzUxciYHxl052zDuBCdKvUP4JqxWE/u/NPwgwVs+9I=)
-      secret-key: ENC(yqOZRKYmMEVDsqIrNEiJfVOfPp8szSnjQWvuwfj6wUQxw2iDjtMmpoNVFRhcKD1WUV+vmkjGEX0=)
-    region:
-        static: ap-northeast-2
