@@ -1,4 +1,4 @@
-package world.puddy.domain
+package world.puddy.question.domain
 
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
@@ -11,6 +11,8 @@ import jakarta.persistence.Table
 @Entity
 @Table(name = "question")
 class Question(
+
+    private val memberId: Long,
 
     @Column(name = "title", length = 50)
     private val title: String,
