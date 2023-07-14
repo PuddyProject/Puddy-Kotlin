@@ -54,6 +54,8 @@ subprojects {
         implementation("org.jetbrains.kotlin:kotlin-reflect")
         implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.0")
         implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.12.1")
+        // jasypt
+        implementation("com.github.ulisesbocchio:jasypt-spring-boot-starter:3.0.5")
 
         testImplementation("org.springframework.boot:spring-boot-starter-test")
         testImplementation("io.kotest:kotest-runner-junit5:4.6.3")

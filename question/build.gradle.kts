@@ -2,6 +2,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 
 dependencies {
+    api(project(":common"))
 }
 
 tasks.withType<KotlinCompile> {
