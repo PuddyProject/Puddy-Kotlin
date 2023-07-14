@@ -42,13 +42,19 @@ subprojects {
     val implementation by configurations
 
     dependencies {
-        implementation("org.springframework.boot:spring-boot-starter-validation")
+
+        // web
+        implementation("org.springframework.boot:spring-boot-starter-web")
         implementation("org.springframework.boot:spring-boot-starter")
+        implementation("org.springframework.boot:spring-boot-starter-validation")
+        // jpa
         implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-        implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.12.1")
-        implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.12.1")
+        // kotlin
+        implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
         implementation("org.jetbrains.kotlin:kotlin-reflect")
         implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.0")
+        implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.12.1")
+
         testImplementation("org.springframework.boot:spring-boot-starter-test")
         testImplementation("io.kotest:kotest-runner-junit5:4.6.3")
         testImplementation("io.kotest:kotest-assertions-core:4.6.3")
@@ -60,7 +66,6 @@ subprojects {
     tasks.withType<KotlinCompile> {
         kotlinOptions.jvmTarget = "17"
     }
-
     repositories {
         mavenCentral()
         maven { url = uri("https://repo.spring.io/milestone") }
