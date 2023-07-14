@@ -12,6 +12,7 @@ import jakarta.persistence.Table
 @Table(name = "question")
 class Question(
 
+    @Column(name = "member_id")
     private val memberId: Long,
 
     @Column(name = "title", length = 50)
