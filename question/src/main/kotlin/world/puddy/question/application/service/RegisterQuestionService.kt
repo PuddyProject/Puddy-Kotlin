@@ -11,7 +11,7 @@ import world.puddy.question.domain.Question
 @Transactional
 class RegisterQuestionService(
     private val registerQuestionPort: RegisterQuestionPort
-): RegisterQuestionUseCase{
+) : RegisterQuestionUseCase {
 
     override fun registerQuestion(command: RegisterQuestionCommand): Question {
         return registerQuestionPort.registerQuestion(command)
