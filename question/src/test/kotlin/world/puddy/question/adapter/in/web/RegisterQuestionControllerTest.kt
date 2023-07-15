@@ -39,7 +39,7 @@ class RegisterQuestionControllerTest : DescribeSpec({
             "",
             MediaType.APPLICATION_JSON_VALUE,
             objectMapper.writeValueAsString(request)
-                .toByteArray() // Assuming objectMapper is an instance of your ObjectMapper
+                .toByteArray()
         )
         context("필수 정보를 모두 입력시") {
             val command = RegisterQuestionCommand(
@@ -65,6 +65,40 @@ class RegisterQuestionControllerTest : DescribeSpec({
             it("요청이 성공한다.") {
                 verify { questionMapper.toCommand(request, null) }
                 verify { registerQuestionUseCase.registerQuestion(command) }
+            }
+        }
+
+        context("필수 정보와 이미지가 제공될 때") {
+            val image = MockMultipartFile(
+                "images",
+                "test.png",
+                MediaType.IMAGE_PNG_VALUE,
+                "Test image content".toByteArray()
+            )
+            val commandWithImages = RegisterQuestionCommand(
+                memberId = 1L,
+                title = "질문 제목",
+                content = "질문 내용",
+                images = listOf(image)
+            )
+            every { questionMapper.toCommand(request, listOf(image)) } returns commandWithImages
+            every { registerQuestionUseCase.registerQuestion(commandWithImages) } returns Question(
+                id = 1L,
+                memberId = 1L,
+                title = "질문 제목",
+                content = "질문 내용"
+            )
+
+            mockMvc.perform(
+                multipart("/questions")
+                    .file(requestPart)
+                    .file(image)
+            )
+                .andExpect(status().isOk)
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+            it("요청이 성공한다.") {
+                verify { questionMapper.toCommand(request, listOf(image)) }
+                verify { registerQuestionUseCase.registerQuestion(commandWithImages) }
             }
         }
     }
