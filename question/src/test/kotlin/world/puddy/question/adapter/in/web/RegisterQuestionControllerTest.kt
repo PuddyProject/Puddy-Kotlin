@@ -28,7 +28,7 @@ class RegisterQuestionControllerTest : DescribeSpec({
         clearAllMocks()
     }
 
-    describe("질문 등록 서비스를") {
+    describe("질문 등록을 요청할 때") {
         val request = RegisterQuestionRequest(
             memberId = 1L,
             title = "질문 제목",
