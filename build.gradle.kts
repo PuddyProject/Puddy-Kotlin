@@ -49,6 +49,10 @@ subprojects {
         implementation("org.springframework.boot:spring-boot-starter-validation")
         // jpa
         implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+
+        implementation("com.linecorp.kotlin-jdsl:hibernate-kotlin-jdsl:2.2.1.RELEASE")
+        implementation("com.linecorp.kotlin-jdsl:kotlin-jdsl-core-jakarta:2.2.1.RELEASE")
+
         // kotlin
         implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
         implementation("org.jetbrains.kotlin:kotlin-reflect")
