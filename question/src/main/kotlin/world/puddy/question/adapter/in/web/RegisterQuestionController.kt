@@ -16,6 +16,7 @@ import world.puddy.question.domain.Question
 @RequestMapping("/questions")
 class RegisterQuestionController(
     private val registerQuestionUseCase: RegisterQuestionUseCase,
+    private val questionMapper: QuestionMapper
 ) {
 
     @PostMapping(consumes = [MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE])
@@ -23,7 +24,7 @@ class RegisterQuestionController(
         @Valid @RequestPart("request") request: RegisterQuestionRequest,
         @RequestPart(value = "images", required = false) images: List<MultipartFile>?
     ): Response<Question> {
-        val command = QuestionMapper.toCommand(request, images)
+        val command = questionMapper.toCommand(request, images)
         return Response.ok(registerQuestionUseCase.registerQuestion(command))
     }
 }

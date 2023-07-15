@@ -10,10 +10,11 @@ import world.puddy.question.domain.Question
 @Transactional(readOnly = true)
 class QuestionPersistenceAdapter(
     private val questionRepository: QuestionRepository,
+    private val questionMapper: QuestionMapper
 ) : RegisterQuestionPort {
 
     @Transactional
     override fun registerQuestion(command: RegisterQuestionCommand): Question {
-        return questionRepository.save(QuestionMapper.toEntity(command))
+        return questionRepository.save(questionMapper.toEntity(command))
     }
 }
