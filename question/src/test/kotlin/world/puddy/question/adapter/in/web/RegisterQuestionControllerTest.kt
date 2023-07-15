@@ -15,6 +15,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders
 import world.puddy.question.adapter.out.persistence.QuestionMapper
 import world.puddy.question.application.port.`in`.RegisterQuestionCommand
 import world.puddy.question.application.port.`in`.RegisterQuestionUseCase
+import world.puddy.question.domain.Category
 import world.puddy.question.domain.Question
 
 class RegisterQuestionControllerTest : DescribeSpec({
@@ -32,7 +33,9 @@ class RegisterQuestionControllerTest : DescribeSpec({
         val request = RegisterQuestionRequest(
             memberId = 1L,
             title = "질문 제목",
-            content = "질문 내용"
+            content = "질문 내용",
+            category = Category.먹이,
+            postCategory = 1
         )
         val requestPart = MockMultipartFile(
             "request",
@@ -46,6 +49,8 @@ class RegisterQuestionControllerTest : DescribeSpec({
                 memberId = 1L,
                 title = "질문 제목",
                 content = "질문 내용",
+                category = Category.먹이,
+                postCategory = 1,
                 images = null
             )
             every { questionMapper.toCommand(request, null) } returns command
@@ -53,7 +58,9 @@ class RegisterQuestionControllerTest : DescribeSpec({
                 id = 1L,
                 memberId = 1L,
                 title = "질문 제목",
-                content = "질문 내용"
+                content = "질문 내용",
+                category = Category.먹이,
+                postCategory = 1
             )
 
             mockMvc.perform(
@@ -79,6 +86,8 @@ class RegisterQuestionControllerTest : DescribeSpec({
                 memberId = 1L,
                 title = "질문 제목",
                 content = "질문 내용",
+                category = Category.먹이,
+                postCategory = 1,
                 images = listOf(image)
             )
             every { questionMapper.toCommand(request, listOf(image)) } returns commandWithImages
@@ -86,7 +95,9 @@ class RegisterQuestionControllerTest : DescribeSpec({
                 id = 1L,
                 memberId = 1L,
                 title = "질문 제목",
-                content = "질문 내용"
+                content = "질문 내용",
+                category = Category.먹이,
+                postCategory = 1
             )
 
             mockMvc.perform(

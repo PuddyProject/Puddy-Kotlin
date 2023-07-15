@@ -1,7 +1,7 @@
 package world.puddy.question.adapter.`in`.web
 
-import jakarta.validation.Valid
 import org.springframework.http.MediaType
+import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestPart
@@ -21,7 +21,7 @@ class RegisterQuestionController(
 
     @PostMapping(consumes = [MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE])
     fun register(
-        @Valid @RequestPart("request") request: RegisterQuestionRequest,
+        @RequestPart("request") request: RegisterQuestionRequest,
         @RequestPart(value = "images", required = false) images: List<MultipartFile>?
     ): Response<Question> {
         val command = questionMapper.toCommand(request, images)

@@ -14,6 +14,8 @@ class QuestionMapper {
             memberId = request.memberId,
             title = request.title,
             content = request.content,
+            category = request.category,
+            postCategory = request.postCategory,
             images = images
         )
     }
@@ -22,7 +24,10 @@ class QuestionMapper {
         return Question(
             memberId = command.memberId,
             title = command.title,
-            content = command.content
+            content = command.content,
+            category = command.category,
+            postCategory = command.postCategory
+
         )
     }
 }
