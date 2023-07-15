@@ -56,11 +56,15 @@ subprojects {
         implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.12.1")
         // jasypt
         implementation("com.github.ulisesbocchio:jasypt-spring-boot-starter:3.0.5")
-
         testImplementation("org.springframework.boot:spring-boot-starter-test")
-        testImplementation("io.kotest:kotest-runner-junit5:4.6.3")
-        testImplementation("io.kotest:kotest-assertions-core:4.6.3")
-        testImplementation("io.mockk:mockk:1.12.2")
+        testImplementation("com.ninja-squad:springmockk:2.0.3")
+
+        // kotest
+        testImplementation("io.kotest:kotest-assertions-core-jvm:5.6.2")
+        testImplementation("io.kotest:kotest-runner-junit5-jvm:5.6.2")
+        testImplementation("io.mockk:mockk:1.13.5")
+
+        // Disk I/O
         runtimeOnly("com.h2database:h2")
         runtimeOnly("com.mysql:mysql-connector-j")
     }
