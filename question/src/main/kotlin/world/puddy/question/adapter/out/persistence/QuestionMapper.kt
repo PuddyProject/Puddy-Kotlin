@@ -9,24 +9,20 @@ import world.puddy.question.domain.Question
 @Component
 class QuestionMapper {
 
-    companion object {
+    fun toCommand(request: RegisterQuestionRequest, images: List<MultipartFile>?): RegisterQuestionCommand {
+        return RegisterQuestionCommand(
+            memberId = request.memberId,
+            title = request.title,
+            content = request.content,
+            images = images
+        )
+    }
 
-        @JvmStatic
-        fun toCommand(request: RegisterQuestionRequest, images: List<MultipartFile>?): RegisterQuestionCommand {
-            return RegisterQuestionCommand(
-                memberId = request.memberId,
-                title = request.title,
-                content = request.content,
-                images = images
-            )
-        }
-
-        fun toEntity(command: RegisterQuestionCommand): Question {
-            return Question(
-                memberId = command.memberId,
-                title = command.title,
-                content = command.content
-            )
-        }
+    fun toEntity(command: RegisterQuestionCommand): Question {
+        return Question(
+            memberId = command.memberId,
+            title = command.title,
+            content = command.content
+        )
     }
 }
