@@ -1,8 +1,11 @@
 package world.puddy.question.adapter.out.persistence
 
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import world.puddy.common.error.exception.QuestionNotFoundException
 import world.puddy.question.application.port.`in`.RegisterQuestionCommand
+import world.puddy.question.application.port.out.FindQuestionPort
 import world.puddy.question.application.port.out.RegisterQuestionPort
 import world.puddy.question.domain.Question
 
@@ -11,10 +14,14 @@ import world.puddy.question.domain.Question
 class QuestionPersistenceAdapter(
     private val questionRepository: QuestionRepository,
     private val questionMapper: QuestionMapper
-) : RegisterQuestionPort {
+) : RegisterQuestionPort, FindQuestionPort {
 
     @Transactional
     override fun registerQuestion(command: RegisterQuestionCommand): Question {
         return questionRepository.save(questionMapper.toEntity(command))
+    }
+
+    override fun findQuestion(id: Long): Question {
+        return questionRepository.findByIdOrNull(id) ?: throw QuestionNotFoundException()
     }
 }

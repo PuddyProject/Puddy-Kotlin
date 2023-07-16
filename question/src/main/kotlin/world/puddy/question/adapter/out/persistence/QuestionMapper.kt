@@ -2,6 +2,7 @@ package world.puddy.question.adapter.out.persistence
 
 import org.springframework.stereotype.Component
 import org.springframework.web.multipart.MultipartFile
+import world.puddy.question.adapter.`in`.web.FindQuestionResponse
 import world.puddy.question.adapter.`in`.web.RegisterQuestionRequest
 import world.puddy.question.application.port.`in`.RegisterQuestionCommand
 import world.puddy.question.domain.Question
@@ -27,6 +28,16 @@ class QuestionMapper {
             category = command.category,
             postCategory = command.postCategory
 
+        )
+    }
+
+    fun toResponse(question: Question): FindQuestionResponse {
+        return FindQuestionResponse(
+            id = question.id,
+            title = question.title,
+            content = question.content,
+            category = question.category.name,
+            postCategory = question.postCategory,
         )
     }
 }
