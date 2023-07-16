@@ -11,7 +11,6 @@ class QuestionMapper {
 
     fun toCommand(request: RegisterQuestionRequest, images: List<MultipartFile>?): RegisterQuestionCommand {
         return RegisterQuestionCommand(
-            memberId = request.memberId,
             title = request.title,
             content = request.content,
             category = request.category,

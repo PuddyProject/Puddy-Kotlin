@@ -4,7 +4,7 @@ import org.springframework.web.multipart.MultipartFile
 import world.puddy.question.domain.Category
 
 class RegisterQuestionCommand(
-    val memberId: Long,
+    val memberId: Long = 0L,
     val title: String,
     val content: String,
     val category: Category,
