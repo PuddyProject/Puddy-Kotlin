@@ -18,27 +18,23 @@ class Question(
     @Column(name = "member_id")
     private val memberId: Long,
 
-    @Column(name = "title", length = 50)
-    private val title: String,
+    @Column(name = "title", length = 50) val title: String,
 
     @Lob
-    @Column(name = "content")
-    private val content: String,
+    @Column(name = "content") val content: String,
 
     @Column(name = "category")
-    @Enumerated(EnumType.STRING)
-    private val category: Category,
+    @Enumerated(EnumType.STRING) val category: Category,
 
-    private val postCategory: Int,
+    val postCategory: Int,
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "question_id")
-    private val id: Long = 0L
+    @Column(name = "question_id") val id: Long = 0L
 ) : BaseEntity() {
     init {
         require(title.length <= 50) { "질문 제목은 50자를 넘을 수 없습니다." }
-        require(title.isNotBlank()) { "질문 제목은 빈칸일 수 없습니다."}
+        require(title.isNotBlank()) { "질문 제목은 빈칸일 수 없습니다." }
         require(content.isNotBlank()) { "질문 내용은 빈칸일 수 없습니다." }
     }
 }
