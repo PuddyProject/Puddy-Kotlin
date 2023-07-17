@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import world.puddy.common.error.exception.QuestionNotFoundException
 import world.puddy.question.application.port.`in`.RegisterQuestionCommand
+import world.puddy.question.application.port.out.FindQuestionListPort
 import world.puddy.question.application.port.out.FindQuestionPort
 import world.puddy.question.application.port.out.RegisterQuestionPort
 import world.puddy.question.domain.Question
@@ -14,7 +15,7 @@ import world.puddy.question.domain.Question
 class QuestionPersistenceAdapter(
     private val questionRepository: QuestionRepository,
     private val questionMapper: QuestionMapper
-) : RegisterQuestionPort, FindQuestionPort {
+) : RegisterQuestionPort, FindQuestionPort, FindQuestionListPort {
 
     @Transactional
     override fun registerQuestion(command: RegisterQuestionCommand): Question {
@@ -24,4 +25,6 @@ class QuestionPersistenceAdapter(
     override fun findQuestion(id: Long): Question {
         return questionRepository.findByIdOrNull(id) ?: throw QuestionNotFoundException()
     }
+
+    override fun findQuestionList(): List<Question> = questionRepository.findAll()
 }
