@@ -13,8 +13,8 @@ import java.time.LocalDateTime
 abstract class BaseEntity {
     @CreatedDate
     @Column(updatable = false)
-    private val createdDate: LocalDateTime? = null
+    val createdDate: LocalDateTime = LocalDateTime.now()
 
     @LastModifiedDate
-    private val modifiedDate: LocalDateTime? = null
+    val modifiedDate: LocalDateTime = LocalDateTime.now()
 }

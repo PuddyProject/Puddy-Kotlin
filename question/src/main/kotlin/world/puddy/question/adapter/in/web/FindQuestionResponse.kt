@@ -2,6 +2,7 @@ package world.puddy.question.adapter.`in`.web
 
 import world.puddy.question.domain.Question
 import world.puddy.question.domain.validator.Category
+import java.time.LocalDateTime
 
 data class FindQuestionResponse(
     val id: Long,
@@ -10,6 +11,7 @@ data class FindQuestionResponse(
     @Category
     val category: String,
     val postCategory: Int,
+    val createdDate: LocalDateTime,
 ) {
     companion object {
         @JvmStatic
@@ -19,7 +21,8 @@ data class FindQuestionResponse(
                 title = question.title,
                 content = question.content,
                 category = question.category.name,
-                postCategory = question.postCategory
+                postCategory = question.postCategory,
+                createdDate = question.createdDate
             )
         }
     }
