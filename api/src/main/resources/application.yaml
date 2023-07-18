@@ -9,6 +9,10 @@ spring:
         format_sql: true
         default_batch_fetch_size: 1000
 
+
+  jackson:
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
 jasypt:
   encryptor:
     password: ${JASYPT_PASSWORD}
@@ -24,4 +28,5 @@ cloud:
       static: ap-northeast-2
     s3:
       bucket: puddybucket
+
 
