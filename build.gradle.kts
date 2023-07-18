@@ -54,6 +54,7 @@ subprojects {
         implementation("com.linecorp.kotlin-jdsl:kotlin-jdsl-core-jakarta:2.2.1.RELEASE")
 
         // kotlin
+        implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.13.0")
         implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
         implementation("org.jetbrains.kotlin:kotlin-reflect")
         implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.0")
