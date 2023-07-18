@@ -5,7 +5,9 @@ import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
 import io.mockk.every
 import io.mockk.mockk
+import io.mockk.verify
 import org.springframework.test.web.servlet.setup.MockMvcBuilders
+import world.puddy.common.error.ErrorCode
 import world.puddy.common.error.exception.QuestionNotFoundException
 import world.puddy.question.QuestionSnippets
 import world.puddy.question.application.port.out.FindQuestionPort
@@ -31,12 +33,12 @@ class FindQuestionServiceTest : BehaviorSpec({
         }
         `when`("없는 id일 경우") {
             val notRegisterId = 2L
-            val exception = QuestionNotFoundException()
-            every { findQuestionPort.findQuestion(notRegisterId) } answers { throw exception }
+            every { findQuestionPort.findQuestion(notRegisterId) } answers { throw QuestionNotFoundException() }
             then("QuestionNotFoundException이 발생한다.") {
                 shouldThrow<QuestionNotFoundException> {
                     findQuestionService.findQuestion(notRegisterId)
-                }.message shouldBe exception.message
+                }.message shouldBe ErrorCode.QUESTION_NOT_FOUND.message
+                verify(exactly = 1) { findQuestionPort.findQuestion(notRegisterId) }
             }
         }
     }
