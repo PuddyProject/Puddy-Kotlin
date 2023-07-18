@@ -1,4 +1,4 @@
-package world.puddy.member.domain
+package world.puddy.user.domain
 
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
@@ -9,8 +9,8 @@ import jakarta.persistence.Table
 import world.puddy.common.jpa.BaseEntity
 
 @Entity
-@Table(name = "member")
-class Member(
+@Table(name = "users")
+class User(
 
     @Column(name = "username")
     private val username: String,
