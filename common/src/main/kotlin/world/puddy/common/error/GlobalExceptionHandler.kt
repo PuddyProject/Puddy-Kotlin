@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice
 import world.puddy.common.error.exception.BusinessException
 import world.puddy.common.error.exception.DuplicateRegisterException
 import world.puddy.common.error.exception.InvalidPasswordException
+import world.puddy.common.error.exception.QuestionNotFoundException
 import world.puddy.common.error.exception.UserNotFoundException
 import world.puddy.common.response.Response
 
@@ -29,8 +30,13 @@ class GlobalExceptionHandler {
         return ResponseEntity.status(errorCode.httpStatus).body(Response.fail(errorCode))
     }
 
+    @ExceptionHandler(QuestionNotFoundException::class)
+    fun questionNotFoundException(e: QuestionNotFoundException): ResponseEntity<Response<Nothing?>> {
+        return ResponseEntity.status(e.errorCode.httpStatus).body(Response.fail(e.errorCode))
+    }
+
     @ExceptionHandler(UserNotFoundException::class)
-    fun notFoundException(e: UserNotFoundException): ResponseEntity<Response<Nothing?>> {
+    fun userNotFoundException(e: UserNotFoundException): ResponseEntity<Response<Nothing?>> {
         return ResponseEntity.status(e.errorCode.httpStatus).body(Response.fail(e.errorCode))
     }
 
