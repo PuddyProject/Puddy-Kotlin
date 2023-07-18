@@ -6,7 +6,6 @@ import io.kotest.matchers.shouldBe
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
-import org.springframework.test.web.servlet.setup.MockMvcBuilders
 import world.puddy.common.error.ErrorCode
 import world.puddy.common.error.exception.QuestionNotFoundException
 import world.puddy.question.QuestionSnippets
@@ -15,7 +14,6 @@ import world.puddy.question.application.port.out.FindQuestionPort
 class FindQuestionServiceTest : BehaviorSpec({
     val findQuestionPort = mockk<FindQuestionPort>()
     val findQuestionService = FindQuestionService(findQuestionPort)
-    val mockMvc = MockMvcBuilders.standaloneSetup(findQuestionService).build()
 
     given("질문 조회 서비스에서") {
         val questionId = 1L
