@@ -7,4 +7,5 @@ jar.enabled = false
 
 dependencies {
     api(project(":question"))
+    api(project(":user"))
 }
