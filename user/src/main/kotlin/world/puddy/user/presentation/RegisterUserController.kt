@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController
 import world.puddy.user.application.RegisterUserService
 
 @RestController
-@RequestMapping("/members")
+@RequestMapping("/users")
 class RegisterUserController(
     private val registerUserService: RegisterUserService
 ) {
