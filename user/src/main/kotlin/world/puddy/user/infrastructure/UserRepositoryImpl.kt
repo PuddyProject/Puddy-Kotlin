@@ -1,8 +1,10 @@
 package world.puddy.user.infrastructure
 
+import org.springframework.stereotype.Repository
 import world.puddy.user.domain.User
 import world.puddy.user.domain.UserRepository
 
+@Repository
 class UserRepositoryImpl(
     private val userJpaRepository: UserJpaRepository
 ) : UserRepository {
