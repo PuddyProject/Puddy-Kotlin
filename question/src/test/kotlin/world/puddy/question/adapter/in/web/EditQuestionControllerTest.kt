@@ -6,6 +6,7 @@ import io.kotest.core.spec.style.DescribeSpec
 import io.mockk.clearAllMocks
 import io.mockk.every
 import io.mockk.mockk
+import io.mockk.verify
 import org.springframework.http.MediaType
 import org.springframework.mock.web.MockMultipartFile
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart
@@ -58,6 +59,7 @@ class EditQuestionControllerTest : DescribeSpec({
                 )
                     .andExpect(status().isOk)
                     .andExpect(content().json(expectedResponse))
+                verify { editQuestionUseCase.editQuestion(registeredId, request) }
             }
         }
     }
