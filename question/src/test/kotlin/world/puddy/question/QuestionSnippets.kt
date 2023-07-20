@@ -1,6 +1,7 @@
 package world.puddy.question
 
 import world.puddy.question.adapter.`in`.web.FindQuestionResponse
+import world.puddy.question.application.port.`in`.RegisterQuestionCommand
 import world.puddy.question.domain.Category
 import world.puddy.question.domain.Question
 import java.time.LocalDateTime
@@ -26,6 +27,16 @@ object QuestionSnippets {
             category = "산책",
             postCategory = 1,
             createdDate = LocalDateTime.of(2021, 7, 17, 14, 38, 42)
+        )
+    }
+
+    fun registerQuestionCommand() : RegisterQuestionCommand {
+        return RegisterQuestionCommand(
+            title = "title",
+            content = "content",
+            category = Category.산책,
+            postCategory = 1,
+            images = null
         )
     }
 }
