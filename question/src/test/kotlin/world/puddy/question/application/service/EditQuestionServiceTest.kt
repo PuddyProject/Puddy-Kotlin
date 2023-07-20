@@ -37,6 +37,7 @@ class EditQuestionServiceTest : BehaviorSpec({
                 shouldThrow<QuestionNotFoundException> {
                     editQuestionService.editQuestion(notRegisterId, request)
                 }
+                verify(exactly = 1) { editQuestionPort.editQuestion(notRegisterId, request) }
             }
         }
     }
