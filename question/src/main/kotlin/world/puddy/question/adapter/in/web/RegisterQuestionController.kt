@@ -9,7 +9,6 @@ import org.springframework.web.multipart.MultipartFile
 import world.puddy.common.response.Response
 import world.puddy.question.adapter.out.persistence.QuestionMapper
 import world.puddy.question.application.port.`in`.RegisterQuestionUseCase
-import world.puddy.question.domain.Question
 
 @RestController
 @RequestMapping("/questions")
@@ -22,7 +21,7 @@ class RegisterQuestionController(
     fun register(
         @RequestPart("request") request: RegisterQuestionRequest,
         @RequestPart(value = "images", required = false) images: List<MultipartFile>?
-    ): Response<Question> {
+    ): Response<Long> {
         val command = questionMapper.toCommand(request, images)
         return Response.ok(registerQuestionUseCase.registerQuestion(command))
     }

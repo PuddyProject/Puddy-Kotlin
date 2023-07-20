@@ -30,6 +30,7 @@ class RegisterQuestionControllerTest : DescribeSpec({
     }
 
     describe("질문 등록을 요청할 때") {
+        val createdId = 1L
         val request = RegisterQuestionRequest(
             title = "질문 제목",
             content = "질문 내용",
@@ -53,14 +54,7 @@ class RegisterQuestionControllerTest : DescribeSpec({
                 images = null
             )
             every { questionMapper.toCommand(request, null) } returns command
-            every { registerQuestionUseCase.registerQuestion(command) } returns Question(
-                id = 1L,
-                memberId = 1L,
-                title = "질문 제목",
-                content = "질문 내용",
-                category = Category.먹이,
-                postCategory = 1
-            )
+            every { registerQuestionUseCase.registerQuestion(command) } returns createdId
 
             mockMvc.perform(
                 multipart("/questions")
@@ -90,14 +84,7 @@ class RegisterQuestionControllerTest : DescribeSpec({
                 images = listOf(image)
             )
             every { questionMapper.toCommand(request, listOf(image)) } returns commandWithImages
-            every { registerQuestionUseCase.registerQuestion(commandWithImages) } returns Question(
-                id = 1L,
-                memberId = 1L,
-                title = "질문 제목",
-                content = "질문 내용",
-                category = Category.먹이,
-                postCategory = 1
-            )
+            every { registerQuestionUseCase.registerQuestion(commandWithImages) } returns createdId
 
             mockMvc.perform(
                 multipart("/questions")
