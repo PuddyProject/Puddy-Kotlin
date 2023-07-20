@@ -2,7 +2,6 @@ package world.puddy.user.application
 
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
-import world.puddy.user.domain.User
 import world.puddy.user.domain.UserRepository
 
 @Service

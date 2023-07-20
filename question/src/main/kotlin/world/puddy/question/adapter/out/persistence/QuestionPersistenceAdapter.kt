@@ -18,8 +18,8 @@ class QuestionPersistenceAdapter(
     private val questionMapper: QuestionMapper
 ) : RegisterQuestionPort, FindQuestionPort, FindQuestionListPort, EditQuestionPort, DeleteQuestionPort {
 
-    override fun registerQuestion(command: RegisterQuestionCommand): Question {
-        return questionRepository.save(questionMapper.toEntity(command))
+    override fun registerQuestion(command: RegisterQuestionCommand): Long {
+        return questionRepository.save(questionMapper.toEntity(command)).id
     }
 
     override fun findQuestion(id: Long): Question {
