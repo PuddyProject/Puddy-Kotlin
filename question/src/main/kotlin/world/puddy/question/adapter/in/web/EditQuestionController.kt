@@ -23,8 +23,5 @@ class EditQuestionController(
         @PathVariable("questionId") questionId: Long,
         @RequestPart("request") request: EditQuestionRequest,
         @RequestPart("images", required = false) images: List<MultipartFile>,
-    ): Response<Unit> {
-        editQuestionUseCase.editQuestion(questionId, request.toCommand())
-        return Response.ok()
-    }
+    ) = Response.ok(editQuestionUseCase.editQuestion(questionId, request.toCommand()))
 }

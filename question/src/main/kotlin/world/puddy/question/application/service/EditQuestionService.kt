@@ -11,7 +11,5 @@ import world.puddy.question.application.port.out.EditQuestionPort
 class EditQuestionService(
     private val editQuestionPort: EditQuestionPort
 ) : EditQuestionUseCase {
-    override fun editQuestion(id: Long, command: EditQuestionCommand) {
-        editQuestionPort.editQuestion(id, command)
-    }
+    override fun editQuestion(id: Long, command: EditQuestionCommand) = editQuestionPort.editQuestion(id, command)
 }
