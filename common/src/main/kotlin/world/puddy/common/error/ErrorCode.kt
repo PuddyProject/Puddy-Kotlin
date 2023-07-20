@@ -8,6 +8,8 @@ enum class ErrorCode(val httpStatus: HttpStatus, val message: String) {
     DUPLICATE_REGISTER(HttpStatus.CONFLICT, "이미 가입된 유저입니다."),
     USER_NOT_FOUND(HttpStatus.NOT_FOUND, "유저를 찾을 수 없습니다."),
     INVALID_PASSWORD(HttpStatus.CONFLICT, "비밀번호가 일치하지 않습니다."),
+    UNIDENTIFIED_USER(HttpStatus.UNAUTHORIZED, "사용자 정보가 일치하지 않습니다."),
+    UNIDENTIFIED_PASSWORD(HttpStatus.UNAUTHORIZED, "기존 비밀번호가 일치하지 않습니다."),
 
     // QUESTION
     QUESTION_NOT_FOUND(HttpStatus.NOT_FOUND, "등록되지 않은 문제입니다."),

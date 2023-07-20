@@ -6,6 +6,10 @@ sealed class BusinessException(
     open val errorCode: ErrorCode
 ) : RuntimeException(errorCode.message)
 
+data class UnidentifiedUserException(
+    override val errorCode: ErrorCode,
+) : BusinessException(errorCode)
+
 data class UserNotFoundException(
     override val errorCode: ErrorCode = ErrorCode.USER_NOT_FOUND
 ) : BusinessException(errorCode)

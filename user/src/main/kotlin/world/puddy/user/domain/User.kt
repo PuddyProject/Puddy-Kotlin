@@ -1,33 +1,67 @@
 package world.puddy.user.domain
 
+import jakarta.persistence.AttributeOverride
 import jakarta.persistence.Column
+import jakarta.persistence.Embedded
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
+import jakarta.persistence.OneToMany
 import jakarta.persistence.Table
+import world.puddy.common.error.ErrorCode
+import world.puddy.common.error.exception.UnidentifiedUserException
 import world.puddy.common.jpa.BaseEntity
+import world.puddy.question.domain.Question
 
 @Entity
 @Table(name = "users")
 class User(
 
-    @Column(name = "username")
-    private val username: String,
+    @Embedded
+    var information: UserInformation,
 
-    @Column(name = "nickname")
-    private val nickname: String,
-
-    @Column(name = "email", unique = true)
-    private val email: String,
-
-    @Column(name = "password")
-    private val password: String,
-
-    @Column(name = "account", unique = true)
-    private val account: String,
+    @AttributeOverride(name = "value", column = Column(name = "password", nullable = false))
+    @Embedded
+    var password: Password,
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private val id: Long = 0L,
-) : BaseEntity()
+) : BaseEntity() {
+    val name: String
+        get() = information.username
+
+    val email: String
+        get() = information.email
+
+    val phoneNumber: String
+        get() = information.phoneNumber
+
+    constructor(
+        account: String,
+        name: String,
+        email: String,
+        phoneNumber: String,
+        password: Password,
+        id: Long = 0L
+    ) : this(
+        UserInformation(account, name, email, phoneNumber), password, id
+    )
+
+    fun authenticate(password: Password) {
+        identify(this.password == password) { "사용자 정보가 일치하지 않습니다." }
+    }
+
+    fun changePassword(oldPassword: Password, newPassword: Password) {
+        identify(this.password == oldPassword) { "기존 비밀번호가 일치하지 않습니다." }
+        this.password = newPassword
+    }
+
+    private fun identify(value: Boolean, lazyMessage: () -> Any = {}) {
+        if (!value) {
+            val message = lazyMessage()
+            throw UnidentifiedUserException(ErrorCode.valueOf(message.toString()))
+        }
+    }
+}
