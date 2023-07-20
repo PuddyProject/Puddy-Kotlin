@@ -28,9 +28,10 @@ class QuestionPersistenceAdapter(
 
     override fun findQuestionList(): List<Question> = questionRepository.findAll()
 
-    override fun editQuestion(id: Long, command: EditQuestionCommand) {
+    override fun editQuestion(id: Long, command: EditQuestionCommand): Long {
         val question = questionRepository.findByIdOrNull(id) ?: throw QuestionNotFoundException()
         question.edit(command.title, command.content, command.category)
+        return id
     }
 
     override fun deleteQuestion(id: Long) {
