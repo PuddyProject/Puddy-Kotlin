@@ -14,8 +14,8 @@ class RegisterQuestionServiceTest : BehaviorSpec({
     val registerQuestionService = RegisterQuestionService(registerQuestionPort)
 
     given("질문글을 등록할 때") {
-        val request = QuestionSnippets.registerQuestionCommand()
-        val question = QuestionSnippets.question()
+        val request = QuestionSnippets.registerQuestionCommand
+        val question = QuestionSnippets.question
         `when`("필수 정보를 모두 입력하면") {
             every { registerQuestionPort.registerQuestion(request) } answers { question }
             then("등록이 성공해야 한다.") {

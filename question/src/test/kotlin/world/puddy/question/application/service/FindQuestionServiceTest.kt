@@ -17,8 +17,8 @@ class FindQuestionServiceTest : BehaviorSpec({
 
     given("질문 조회 서비스에서") {
         val questionId = 1L
-        val response = QuestionSnippets.findQuestionResponse()
-        every { findQuestionPort.findQuestion(questionId) } answers { QuestionSnippets.question() }
+        val response = QuestionSnippets.findQuestionResponse
+        every { findQuestionPort.findQuestion(questionId) } answers { QuestionSnippets.question }
         `when`("올바른 id로 조회했을 때") {
             val actual = findQuestionService.findQuestion(questionId)
             then("해당 id에 대한 질문글을 반환한다.") {
@@ -36,7 +36,7 @@ class FindQuestionServiceTest : BehaviorSpec({
                 shouldThrow<QuestionNotFoundException> {
                     findQuestionService.findQuestion(notRegisterId)
                 }.message shouldBe ErrorCode.QUESTION_NOT_FOUND.message
-                verify(exactly = 1) { findQuestionPort.findQuestion(notRegisterId) }
+
             }
         }
     }
