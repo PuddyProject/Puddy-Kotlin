@@ -21,6 +21,8 @@ class User(
     @Embedded
     var information: UserInformation,
 
+    var nickname: String = "퍼디1234",
+
     @AttributeOverride(name = "value", column = Column(name = "password", nullable = false))
     @Embedded
     var password: Password,
@@ -29,24 +31,21 @@ class User(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private val id: Long = 0L,
 ) : BaseEntity() {
-    val name: String
+    val username: String
         get() = information.username
 
     val email: String
         get() = information.email
 
-    val phoneNumber: String
-        get() = information.phoneNumber
-
     constructor(
         account: String,
-        name: String,
+        username: String,
         email: String,
-        phoneNumber: String,
+        nickname: String,
         password: Password,
         id: Long = 0L
     ) : this(
-        UserInformation(account, name, email, phoneNumber), password, id
+        UserInformation(account, username, email), nickname, password, id
     )
 
     fun authenticate(password: Password) {

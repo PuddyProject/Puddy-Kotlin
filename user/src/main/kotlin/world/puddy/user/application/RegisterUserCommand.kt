@@ -1,10 +1,11 @@
 package world.puddy.user.application
 
+import world.puddy.user.domain.Password
 import world.puddy.user.domain.User
 
 data class RegisterUserCommand(
     val account: String,
-    val password: String,
+    val password: Password,
     val username: String,
     val email: String,
 ) {
