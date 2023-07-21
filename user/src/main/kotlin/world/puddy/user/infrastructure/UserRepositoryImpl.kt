@@ -13,4 +13,6 @@ class UserRepositoryImpl(
     override fun findById(id: Long): User {
         TODO("Not yet implemented")
     }
+
+    override fun existsByEmail(email: String) = userJpaRepository.existsByInformationEmail(email)
 }

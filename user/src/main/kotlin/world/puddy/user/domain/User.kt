@@ -7,12 +7,10 @@ import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
-import jakarta.persistence.OneToMany
 import jakarta.persistence.Table
 import world.puddy.common.error.ErrorCode
 import world.puddy.common.error.exception.UnidentifiedUserException
 import world.puddy.common.jpa.BaseEntity
-import world.puddy.question.domain.Question
 
 @Entity
 @Table(name = "users")
@@ -29,7 +27,7 @@ class User(
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private val id: Long = 0L,
+    val id: Long = 0L,
 ) : BaseEntity() {
     val username: String
         get() = information.username
