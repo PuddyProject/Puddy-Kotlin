@@ -6,4 +6,5 @@ jar.enabled = true
 
 dependencies {
     api(project(":common"))
+    api(project(":question"))
 }

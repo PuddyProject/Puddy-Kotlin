@@ -50,6 +50,11 @@ subprojects {
         // jpa
         implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 
+        // security
+        implementation("org.springframework.boot:spring-boot-starter-security")
+        implementation("org.springframework.security:spring-security-test")
+        implementation("org.springframework.security:spring-security-oauth2-client")
+
         implementation("com.linecorp.kotlin-jdsl:hibernate-kotlin-jdsl:2.2.1.RELEASE")
         implementation("com.linecorp.kotlin-jdsl:kotlin-jdsl-core-jakarta:2.2.1.RELEASE")
 
@@ -65,7 +70,6 @@ subprojects {
         testImplementation("org.springframework.boot:spring-boot-starter-test")
         testImplementation("com.ninja-squad:springmockk:2.0.3")
 
-        //
         // token
         implementation("com.auth0:java-jwt:3.18.3")
         implementation("io.jsonwebtoken:jjwt:0.9.1")
