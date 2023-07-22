@@ -29,6 +29,9 @@ class User(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0L,
 ) : BaseEntity() {
+
+    val account: String
+        get() = information.account
     val username: String
         get() = information.username
 
