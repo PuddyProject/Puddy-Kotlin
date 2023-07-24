@@ -8,6 +8,7 @@ jar.enabled = true
 
 plugins {
     id("org.jlleitschuh.gradle.ktlint") version "10.3.0"
+
     id("org.springframework.boot") version "3.1.1"
     id("io.spring.dependency-management") version "1.1.0"
     kotlin("jvm") version "1.9.0"

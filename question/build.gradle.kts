@@ -1,6 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 dependencies {
+    api(project(":puddy-common"))
 }
 
 tasks.withType<KotlinCompile> {

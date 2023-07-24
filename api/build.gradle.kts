@@ -5,6 +5,5 @@ bootJar.enabled = true
 jar.enabled = false
 
 dependencies {
-    api(project(":question"))
-    api(project(":user"))
+    api(project(":puddy-core"))
 }
