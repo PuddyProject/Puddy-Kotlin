@@ -27,5 +27,7 @@ cloud:
       static: ap-northeast-2
     s3:
       bucket: puddybucket
+jwt:
+  secret-key: ENC(qBptcytc75l909BnyVcmGxm8E/7EI48ZTpHCkluUA5f5FNT3VvfOtmHdHfubfmhwa8wqyeVvSImInp65qdCie1eH8jOTvdsdzYiFeFCUai8=)
 
 
