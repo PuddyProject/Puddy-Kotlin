@@ -80,6 +80,9 @@ subprojects {
         testImplementation("io.kotest:kotest-runner-junit5-jvm:5.6.2")
         testImplementation("io.mockk:mockk:1.13.5")
 
+        // redis
+        implementation("org.springframework.boot:spring-boot-starter-data-redis")
+
         // Disk I/O
         runtimeOnly("com.h2database:h2")
         runtimeOnly("com.mysql:mysql-connector-j")
