@@ -5,7 +5,6 @@ import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
 import io.mockk.every
 import io.mockk.mockk
-import io.mockk.verify
 import world.puddy.common.error.ErrorCode
 import world.puddy.common.error.exception.QuestionNotFoundException
 import world.puddy.question.QuestionSnippets
@@ -36,7 +35,6 @@ class FindQuestionServiceTest : BehaviorSpec({
                 shouldThrow<QuestionNotFoundException> {
                     findQuestionService.findQuestion(notRegisterId)
                 }.message shouldBe ErrorCode.QUESTION_NOT_FOUND.message
-
             }
         }
     }

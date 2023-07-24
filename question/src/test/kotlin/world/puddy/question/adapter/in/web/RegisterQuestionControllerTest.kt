@@ -16,7 +16,6 @@ import world.puddy.question.adapter.out.persistence.QuestionMapper
 import world.puddy.question.application.port.`in`.RegisterQuestionCommand
 import world.puddy.question.application.port.`in`.RegisterQuestionUseCase
 import world.puddy.question.domain.Category
-import world.puddy.question.domain.Question
 
 class RegisterQuestionControllerTest : DescribeSpec({
     val registerQuestionUseCase = mockk<RegisterQuestionUseCase>()
