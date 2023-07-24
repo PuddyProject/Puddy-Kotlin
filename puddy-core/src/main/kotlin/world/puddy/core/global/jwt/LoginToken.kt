@@ -1,4 +1,4 @@
-package world.puddy.core.jwt
+package world.puddy.core.global.jwt
 
 data class LoginToken(
     val accessToken: String,

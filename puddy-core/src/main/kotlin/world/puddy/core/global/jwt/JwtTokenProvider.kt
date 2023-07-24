@@ -1,4 +1,4 @@
-package world.puddy.core.jwt
+package world.puddy.core.global.jwt
 
 import com.auth0.jwt.JWT
 import com.auth0.jwt.algorithms.Algorithm
