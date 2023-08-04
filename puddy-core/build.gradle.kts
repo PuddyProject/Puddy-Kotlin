@@ -5,6 +5,5 @@ bootJar.enabled = false
 jar.enabled = true
 
 dependencies {
-    api(project(":user"))
-    api(project(":question"))
+    implementation("org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE")
 }

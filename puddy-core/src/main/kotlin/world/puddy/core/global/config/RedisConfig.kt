@@ -10,7 +10,7 @@ import org.springframework.data.redis.core.RedisTemplate
 import org.springframework.data.redis.repository.configuration.EnableRedisRepositories
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer
 import org.springframework.data.redis.serializer.StringRedisSerializer
-import world.puddy.user.domain.User
+import world.puddy.core.domain.user.domain.User
 
 @Configuration
 @EnableRedisRepositories
