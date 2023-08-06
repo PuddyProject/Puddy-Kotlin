@@ -1,15 +1,9 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
-val jar: Jar by tasks
-val bootJar: org.springframework.boot.gradle.tasks.bundling.BootJar by tasks
-
-bootJar.enabled = false
-jar.enabled = true
+import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 plugins {
-    id("org.jlleitschuh.gradle.ktlint") version "10.3.0"
-
-    id("org.springframework.boot") version "3.1.1"
+    id("org.jlleitschuh.gradle.ktlint") version "11.0.0"
+    id("org.springframework.boot") version "3.1.2"
     id("io.spring.dependency-management") version "1.1.0"
     kotlin("jvm") version "1.9.0"
     kotlin("plugin.spring") version "1.9.0"
@@ -31,6 +25,14 @@ allprojects {
     apply(plugin = "kotlin-allopen")
     apply(plugin = "kotlin-jpa")
     apply(plugin = "org.jetbrains.kotlin.plugin.noarg")
+
+    ktlint {
+        filter {
+            exclude { it.file.path.contains("$buildDir/generated/") }
+        }
+
+        disabledRules.set(setOf("import-ordering", "no-wildcard-imports", "filename"))
+    }
 }
 
 subprojects {
@@ -119,4 +121,12 @@ subprojects {
             exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
         }
     }
+}
+
+tasks.named<BootJar>("bootJar") {
+    enabled = false
+}
+
+tasks.named<Jar>("jar") {
+    enabled = true
 }
