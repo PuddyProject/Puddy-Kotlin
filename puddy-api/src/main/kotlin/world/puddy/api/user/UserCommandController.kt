@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import world.puddy.core.domain.user.application.port.`in`.JoinUserUseCase
 import world.puddy.core.domain.user.application.port.`in`.LoginUserUseCase
+import world.puddy.core.global.response.Response
 
 @RestController
 @RequestMapping("/users")
@@ -14,8 +15,9 @@ class UserCommandController(
     private val loginUserUseCase: LoginUserUseCase
 ) {
     @PostMapping("/join")
-    fun join(@RequestBody request: JoinUserRequest) {
+    fun join(@RequestBody request: JoinUserRequest): Response<Unit> {
         joinUserUseCase.join(request.toCommand())
+        return Response.ok()
     }
 
     @PostMapping("/login")

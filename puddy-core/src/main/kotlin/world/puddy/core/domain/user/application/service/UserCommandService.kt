@@ -9,6 +9,7 @@ import world.puddy.core.domain.user.application.port.`in`.LoginUserUseCase
 import world.puddy.core.domain.user.application.port.out.FindUserPort
 import world.puddy.core.domain.user.application.port.out.JoinUserPort
 import world.puddy.core.domain.user.domain.Password
+import world.puddy.core.global.error.exception.DuplicateRegisterException
 import world.puddy.core.global.jwt.JwtTokenProvider
 
 @Service
@@ -20,9 +21,10 @@ class UserCommandService(
 
     @Transactional
     override fun join(command: JoinUserCommand) {
-        val user = findUserPort.getUserByAccount(command.account)
-        user.duplicateJoinCheck(command.account, command.email)
-        joinUserPort.saveUser(user)
+        if (findUserPort.existsByAccount(command.account)) {
+            throw DuplicateRegisterException()
+        }
+        joinUserPort.saveUser(command.toEntity())
     }
 
     @Transactional

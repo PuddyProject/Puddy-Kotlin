@@ -50,12 +50,6 @@ class User(
         identify(this.password == oldPassword) { "기존 비밀번호가 일치하지 않습니다." }
         this.password = newPassword
     }
-
-    fun duplicateJoinCheck(account: String, email: String) {
-        identify(this.account == account) { "이미 존재하는 아이디입니다." }
-        identify(this.email == email) { "이미 존재하는 이메일입니다." }
-    }
-
     private fun identify(value: Boolean, lazyMessage: () -> Any = {}) {
         if (!value) {
             val message = lazyMessage()
