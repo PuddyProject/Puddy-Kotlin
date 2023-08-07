@@ -3,7 +3,7 @@ package world.puddy.core.domain.question.adapter.out.persistence
 import org.springframework.data.domain.Pageable
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Repository
-import world.puddy.common.error.exception.QuestionNotFoundException
+import world.puddy.core.global.error.exception.QuestionNotFoundException
 import world.puddy.core.domain.question.application.port.`in`.EditQuestionCommand
 import world.puddy.core.domain.question.application.port.`in`.RegisterQuestionCommand
 import world.puddy.core.domain.question.application.port.out.*
