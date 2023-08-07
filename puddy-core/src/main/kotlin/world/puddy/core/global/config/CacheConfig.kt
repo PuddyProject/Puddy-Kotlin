@@ -1,4 +1,4 @@
-package world.puddy.common.config
+package world.puddy.core.global.config
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.springframework.cache.annotation.EnableCaching
@@ -11,8 +11,8 @@ import org.springframework.data.redis.serializer.RedisSerializationContext
 import org.springframework.data.redis.serializer.StringRedisSerializer
 import java.time.Duration
 
-@EnableCaching
 @Configuration
+@EnableCaching
 class CacheConfig {
     /**
      * Redis Cache를 사용하기 위한 cache manager 등록.<br>

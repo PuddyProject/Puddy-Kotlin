@@ -9,8 +9,7 @@ import world.puddy.common.error.exception.DuplicateRegisterException
 import world.puddy.common.error.exception.InvalidPasswordException
 import world.puddy.common.error.exception.QuestionNotFoundException
 import world.puddy.common.error.exception.UserNotFoundException
-import world.puddy.common.response.Response
-
+import world.puddy.core.global.response.Response
 @RestControllerAdvice
 class GlobalExceptionHandler {
 
