@@ -1,6 +1,7 @@
 package world.puddy.core.domain.user.domain
 
 import jakarta.persistence.*
+import jakarta.validation.constraints.NotNull
 import world.puddy.core.global.error.ErrorCode
 import world.puddy.core.global.error.exception.UnidentifiedUserException
 import world.puddy.core.global.jpa.BaseEntity
@@ -15,6 +16,10 @@ class User(
     @AttributeOverride(name = "value", column = Column(name = "password", nullable = false))
     @Embedded
     var password: Password,
+
+    @NotNull
+    @Column(name = "role")
+    var role: String,
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,7 +44,7 @@ class User(
         password: Password,
         id: Long = 0L
     ) : this(
-        UserInformation(account, username, notificated, email), password, id
+        UserInformation(account, username, notificated, email), password, UserRole.USER.role, id
     )
 
     fun authenticate(password: Password) {
@@ -50,6 +55,7 @@ class User(
         identify(this.password == oldPassword) { "기존 비밀번호가 일치하지 않습니다." }
         this.password = newPassword
     }
+
     private fun identify(value: Boolean, lazyMessage: () -> Any = {}) {
         if (!value) {
             val message = lazyMessage()

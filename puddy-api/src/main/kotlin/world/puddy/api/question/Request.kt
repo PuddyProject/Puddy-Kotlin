@@ -16,12 +16,13 @@ data class RegisterQuestionRequest(
 
     val postCategory: Int,
 ) {
-    fun toCommand(memberId: Long, images: List<MultipartFile>) = RegisterQuestionCommand(
+    fun toCommand(memberId: Long, images: List<MultipartFile>?) = RegisterQuestionCommand(
+        memberId = memberId,
         title = title,
         content = content,
         category = category,
         postCategory = postCategory,
-        images = null,
+        images = images,
     )
 }
 

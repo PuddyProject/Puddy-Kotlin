@@ -10,6 +10,7 @@ import world.puddy.core.domain.user.application.port.out.FindUserPort
 import world.puddy.core.domain.user.application.port.out.JoinUserPort
 import world.puddy.core.domain.user.domain.Password
 import world.puddy.core.global.error.exception.DuplicateRegisterException
+import world.puddy.core.global.jwt.CreateTokenCommand
 import world.puddy.core.global.jwt.JwtTokenProvider
 import world.puddy.core.global.jwt.LoginToken
 
@@ -32,6 +33,15 @@ class UserCommandService(
     override fun login(command: LoginUserCommand): LoginToken {
         val user = findUserPort.getUserByAccount(command.account)
             .also { it.authenticate(Password(command.password)) }
-        return jwtTokenProvider.createToken(user)
+        return jwtTokenProvider.createToken(
+            CreateTokenCommand.from(
+                user.id,
+                user.username,
+                user.nickname,
+                user.account,
+                user.email,
+                user.role,
+            )
+        )
     }
 }
