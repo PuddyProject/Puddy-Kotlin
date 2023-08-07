@@ -5,6 +5,7 @@ plugins {
     id("org.jlleitschuh.gradle.ktlint") version "11.0.0"
     id("org.springframework.boot") version "3.1.2"
     id("io.spring.dependency-management") version "1.1.0"
+    id("org.jetbrains.kotlin.plugin.noarg") version "1.9.0"
     kotlin("jvm") version "1.9.0"
     kotlin("plugin.spring") version "1.9.0"
     kotlin("plugin.jpa") version "1.9.0"
@@ -33,6 +34,7 @@ allprojects {
 
         disabledRules.set(setOf("import-ordering", "no-wildcard-imports", "filename"))
     }
+
 }
 
 subprojects {
@@ -68,10 +70,9 @@ subprojects {
 
         // kotlin
         implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.13.0")
-        implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+        implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.0")
         implementation("org.jetbrains.kotlin:kotlin-reflect")
         implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.0")
-        implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.12.1")
 
         // jasypt
         implementation("com.github.ulisesbocchio:jasypt-spring-boot-starter:3.0.5")
@@ -99,13 +100,6 @@ subprojects {
         mavenCentral()
         maven { url = uri("https://repo.spring.io/milestone") }
         maven { url = uri("https://repo.spring.io/snapshot") }
-    }
-
-    dependencies {
-        implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-        implementation("org.jetbrains.kotlin:kotlin-reflect")
-        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-        testImplementation("org.springframework.boot:spring-boot-starter-test")
     }
 
     tasks.withType<KotlinCompile> {
