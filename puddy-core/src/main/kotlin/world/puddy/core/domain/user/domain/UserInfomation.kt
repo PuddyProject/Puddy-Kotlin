@@ -16,7 +16,7 @@ data class UserInformation(
     @Column(unique = true, nullable = false)
     val email: String,
 ) {
-    fun same(name: String, email: String): Boolean {
-        return this.username == name && email == this.email
+    fun same(account: String, email: String): Boolean {
+        return this.account == account && email == this.email
     }
 }

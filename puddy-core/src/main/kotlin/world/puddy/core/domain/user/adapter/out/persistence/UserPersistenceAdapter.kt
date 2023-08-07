@@ -14,10 +14,14 @@ class UserPersistenceAdapter(
     override fun saveUser(user: User) = userJpaRepository.save(user).id
 
     override fun getUserById(id: Long): User {
-        return userJpaRepository.findByIdOrNull(id)?: throw UserNotFoundException()
+        return userJpaRepository.findByIdOrNull(id) ?: throw UserNotFoundException()
+    }
+
+    override fun existsByAccount(account: String): Boolean {
+        return userJpaRepository.existsByInformationAccount(account)
     }
 
     override fun getUserByAccount(account: String): User {
-        return userJpaRepository.findByAccount(account)?: throw UserNotFoundException()
+        return userJpaRepository.findByInformationAccount(account) ?: throw UserNotFoundException()
     }
 }
