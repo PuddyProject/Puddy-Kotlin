@@ -24,7 +24,6 @@ object JwtVerifier {
     }
 
     fun verifyRefreshToken(account: String, refreshToken: String) {
-
     }
 
     fun expireRefreshToken(account: String) {
