@@ -27,7 +27,7 @@ class SecurityConfig(
     fun filterChain(http: HttpSecurity): SecurityFilterChain = http.csrf { it.disable() }
         .sessionManagement { it.disable() }
         .authorizeHttpRequests {
-            it.requestMatchers(HttpMethod.POST, "/questions/**").hasRole(UserRole.ROLE_USER.name)
+            it.requestMatchers(HttpMethod.POST, "/questions/**").hasRole("USER")
                 .requestMatchers("/users/**").permitAll()
                 .anyRequest().permitAll()
         }
