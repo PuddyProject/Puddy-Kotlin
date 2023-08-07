@@ -11,6 +11,8 @@ data class UserInformation(
     @Column(nullable = false, length = 30)
     val username: String,
 
+    var notificated: Boolean = false,
+
     @Column(unique = true, nullable = false)
     val email: String,
 ) {
