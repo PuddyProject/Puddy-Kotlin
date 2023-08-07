@@ -53,6 +53,11 @@ subprojects {
         // jpa
         implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 
+        // token
+        implementation("com.auth0:java-jwt:3.18.3")
+        implementation("io.jsonwebtoken:jjwt:0.9.1")
+        implementation("com.nimbusds:nimbus-jose-jwt:9.31")
+
         // security
         implementation("org.springframework.boot:spring-boot-starter-security")
         implementation("org.springframework.security:spring-security-test")
@@ -70,13 +75,9 @@ subprojects {
 
         // jasypt
         implementation("com.github.ulisesbocchio:jasypt-spring-boot-starter:3.0.5")
+
         testImplementation("org.springframework.boot:spring-boot-starter-test")
         testImplementation("com.ninja-squad:springmockk:2.0.3")
-
-        // token
-        implementation("com.auth0:java-jwt:3.18.3")
-        implementation("io.jsonwebtoken:jjwt:0.9.1")
-        implementation("com.nimbusds:nimbus-jose-jwt:9.31")
 
         // kotest
         testImplementation("io.kotest:kotest-assertions-core-jvm:5.6.2")
