@@ -26,15 +26,12 @@ allprojects {
     apply(plugin = "kotlin-allopen")
     apply(plugin = "kotlin-jpa")
     apply(plugin = "org.jetbrains.kotlin.plugin.noarg")
-
     ktlint {
         filter {
             exclude { it.file.path.contains("$buildDir/generated/") }
         }
-
         disabledRules.set(setOf("import-ordering", "no-wildcard-imports", "filename"))
     }
-
 }
 
 subprojects {
