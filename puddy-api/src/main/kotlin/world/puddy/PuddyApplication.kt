@@ -4,7 +4,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication(
-    scanBasePackages = ["world.puddy.core", "world.puddy.common"]
+    scanBasePackages = ["world.puddy.core", "world.puddy.api"]
 )
 class PuddyApplication
 
