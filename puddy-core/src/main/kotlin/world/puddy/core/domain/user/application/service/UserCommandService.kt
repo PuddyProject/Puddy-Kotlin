@@ -40,7 +40,7 @@ class UserCommandService(
                 user.nickname,
                 user.account,
                 user.email,
-                user.role,
+                user.role.name,
             )
         )
     }

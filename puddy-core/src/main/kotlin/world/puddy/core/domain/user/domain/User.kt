@@ -19,7 +19,8 @@ class User(
 
     @NotNull
     @Column(name = "role")
-    var role: String,
+    @Enumerated(EnumType.STRING)
+    var role: UserRole,
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,7 +45,7 @@ class User(
         password: Password,
         id: Long = 0L
     ) : this(
-        UserInformation(account, username, notificated, email), password, UserRole.USER.role, id
+        UserInformation(account, username, notificated, email), password, UserRole.ROLE_USER, id
     )
 
     fun authenticate(password: Password) {
