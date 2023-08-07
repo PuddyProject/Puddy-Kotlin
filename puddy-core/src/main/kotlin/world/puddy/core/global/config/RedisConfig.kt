@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
+import com.fasterxml.jackson.module.kotlin.KotlinModule
 import io.lettuce.core.ClientOptions
 import io.lettuce.core.ReadFrom
 import io.lettuce.core.SocketOptions
@@ -39,7 +40,7 @@ class RedisConfig(
     fun objectMapper(): ObjectMapper {
         val mapper = ObjectMapper()
         mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
-        mapper.registerModules(JavaTimeModule(), Jdk8Module())
+        mapper.registerModules(JavaTimeModule(), Jdk8Module(), KotlinModule())
         return mapper
     }
 
