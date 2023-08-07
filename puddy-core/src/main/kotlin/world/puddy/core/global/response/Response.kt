@@ -1,7 +1,7 @@
 package world.puddy.core.global.response
 
 import org.springframework.http.HttpStatus
-import world.puddy.common.error.ErrorCode
+import world.puddy.core.global.error.ErrorCode
 
 data class Response<T>(
     val code: Int,

@@ -1,4 +1,4 @@
-package world.puddy.common.error
+package world.puddy.core.global.error
 
 import org.springframework.http.HttpStatus
 

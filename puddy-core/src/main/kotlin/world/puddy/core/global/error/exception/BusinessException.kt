@@ -1,6 +1,6 @@
-package world.puddy.common.error.exception
+package world.puddy.core.global.error.exception
 
-import world.puddy.common.error.ErrorCode
+import world.puddy.core.global.error.ErrorCode
 
 sealed class BusinessException(
     open val errorCode: ErrorCode

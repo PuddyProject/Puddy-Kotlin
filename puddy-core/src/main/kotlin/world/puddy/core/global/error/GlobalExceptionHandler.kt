@@ -1,14 +1,15 @@
-package world.puddy.common.error
+package world.puddy.core.global.error
+
 
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.MethodArgumentNotValidException
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.RestControllerAdvice
-import world.puddy.common.error.exception.BusinessException
-import world.puddy.common.error.exception.DuplicateRegisterException
-import world.puddy.common.error.exception.InvalidPasswordException
-import world.puddy.common.error.exception.QuestionNotFoundException
-import world.puddy.common.error.exception.UserNotFoundException
+import world.puddy.core.global.error.exception.BusinessException
+import world.puddy.core.global.error.exception.DuplicateRegisterException
+import world.puddy.core.global.error.exception.InvalidPasswordException
+import world.puddy.core.global.error.exception.QuestionNotFoundException
+import world.puddy.core.global.error.exception.UserNotFoundException
 import world.puddy.core.global.response.Response
 @RestControllerAdvice
 class GlobalExceptionHandler {

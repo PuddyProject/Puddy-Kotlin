@@ -10,7 +10,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Component
 import org.springframework.web.filter.OncePerRequestFilter
-import world.puddy.common.error.exception.BusinessException
+import world.puddy.core.global.error.exception.BusinessException
 import world.puddy.core.global.auth.JwtUserDetails
 
 @Component
