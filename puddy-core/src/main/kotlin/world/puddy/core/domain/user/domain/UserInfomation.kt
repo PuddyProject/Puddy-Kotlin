@@ -2,7 +2,6 @@ package world.puddy.core.domain.user.domain
 
 import jakarta.persistence.Column
 import jakarta.persistence.Embeddable
-import java.time.LocalDate
 
 @Embeddable
 data class UserInformation(
@@ -14,7 +13,7 @@ data class UserInformation(
 
     @Column(unique = true, nullable = false)
     val email: String,
-    ) {
+) {
     fun same(name: String, email: String): Boolean {
         return this.username == name && email == this.email
     }

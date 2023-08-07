@@ -7,5 +7,4 @@ import org.springframework.transaction.annotation.Transactional
 @Transactional
 class UserPersistenceAdapter(
     private val userRepository: UserRepository
-) {
-}
+)
