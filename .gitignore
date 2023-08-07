@@ -1,7 +1,8 @@
 HELP.md
 .gradle
 build/
-out/
+puddy-core/out/
+puddy-api/out/
 
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**
