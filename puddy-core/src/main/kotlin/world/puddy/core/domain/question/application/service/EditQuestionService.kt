@@ -6,11 +6,10 @@ import world.puddy.core.domain.question.application.port.`in`.EditQuestionComman
 import world.puddy.core.domain.question.application.port.`in`.EditQuestionUseCase
 import world.puddy.core.domain.question.application.port.out.EditQuestionPort
 
-
 @Service
 @Transactional
 class EditQuestionService(
     private val editQuestionPort: EditQuestionPort
 ) : EditQuestionUseCase {
-    override fun editQuestion(id: Long, command: EditQuestionCommand) = editQuestionPort.editQuestion(id, command)
+    override fun editQuestion(command: EditQuestionCommand) = editQuestionPort.editQuestion(command)
 }

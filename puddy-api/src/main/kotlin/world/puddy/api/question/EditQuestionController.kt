@@ -1,14 +1,10 @@
 package world.puddy.api.question
 
 import org.springframework.http.MediaType
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PutMapping
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestPart
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 import org.springframework.web.multipart.MultipartFile
-import world.puddy.common.response.Response
 import world.puddy.core.domain.question.application.port.`in`.EditQuestionUseCase
+import world.puddy.core.global.response.Response
 
 @RestController
 @RequestMapping("/questions")
@@ -23,5 +19,5 @@ class EditQuestionController(
         @PathVariable("questionId") questionId: Long,
         @RequestPart("request") request: EditQuestionRequest,
         @RequestPart("images", required = false) images: List<MultipartFile>,
-    ) = Response.ok(editQuestionUseCase.editQuestion(questionId, request.toCommand()))
+    ) = Response.ok(editQuestionUseCase.editQuestion(request.toCommand(questionId, 1L)))
 }
