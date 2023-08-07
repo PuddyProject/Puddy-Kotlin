@@ -12,8 +12,6 @@ class User(
     @Embedded
     var information: UserInformation,
 
-    var nickname: String = "퍼디1234",
-
     @AttributeOverride(name = "value", column = Column(name = "password", nullable = false))
     @Embedded
     var password: Password,
@@ -31,15 +29,17 @@ class User(
     val email: String
         get() = information.email
 
+    var nickname: String = "퍼디1234"
+
     constructor(
         account: String,
         username: String,
         email: String,
-        nickname: String,
+        notificated: Boolean,
         password: Password,
         id: Long = 0L
     ) : this(
-        UserInformation(account, username, email), nickname, password, id
+        UserInformation(account, username, notificated, email), password, id
     )
 
     fun authenticate(password: Password) {
@@ -49,6 +49,11 @@ class User(
     fun changePassword(oldPassword: Password, newPassword: Password) {
         identify(this.password == oldPassword) { "기존 비밀번호가 일치하지 않습니다." }
         this.password = newPassword
+    }
+
+    fun duplicateJoinCheck(account: String, email: String) {
+        identify(this.account == account) { "이미 존재하는 아이디입니다." }
+        identify(this.email == email) { "이미 존재하는 이메일입니다." }
     }
 
     private fun identify(value: Boolean, lazyMessage: () -> Any = {}) {
