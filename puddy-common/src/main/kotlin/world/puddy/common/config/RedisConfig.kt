@@ -50,11 +50,11 @@ class RedisConfig {
     fun redisConnectionFactory(redisStandaloneConfiguration: RedisStandaloneConfiguration): RedisConnectionFactory {
         val socketOptions = SocketOptions.builder().connectTimeout(Duration.of(10, ChronoUnit.MINUTES)).build()
 
-        val clientOptions = ClientOptions.builder().socketOptions(socketOptions).autoReconnect(true).build();
+        val clientOptions = ClientOptions.builder().socketOptions(socketOptions).autoReconnect(true).build()
         val clientConfig =
             LettuceClientConfiguration.builder()
                 .clientOptions(clientOptions)
-                .readFrom(REPLICA_PREFERRED);
+                .readFrom(REPLICA_PREFERRED)
 
         return LettuceConnectionFactory(redisStandaloneConfiguration, clientConfig.build())
     }
