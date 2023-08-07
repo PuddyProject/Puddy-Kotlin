@@ -14,7 +14,6 @@ class QuestionPersistenceAdapter(
     private val questionRepository: QuestionRepository,
 ) : RegisterQuestionPort,
     FindQuestionPort,
-    FindQuestionListPort,
     EditQuestionPort,
     DeleteQuestionPort {
 

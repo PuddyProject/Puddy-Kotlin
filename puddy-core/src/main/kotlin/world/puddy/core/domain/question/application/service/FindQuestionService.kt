@@ -1,5 +1,6 @@
 package world.puddy.core.domain.question.application.service
 
+import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import world.puddy.core.domain.question.application.port.`in`.FindQuestionUseCase
@@ -12,4 +13,9 @@ class FindQuestionService(
 ) : FindQuestionUseCase {
     override fun findQuestion(id: Long): FindQuestionResponse =
         FindQuestionResponse.of(findQuestionPort.findQuestion(id))
+
+    override fun findQuestionList(page: Pageable, keyword: String, sort: String): List<FindQuestionResponse> =
+        findQuestionPort.findQuestionList(page, keyword, sort).let {
+            it.map { question -> FindQuestionResponse.of(question) }
+        }
 }
