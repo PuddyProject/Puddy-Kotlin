@@ -6,8 +6,8 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
 
 data class JwtUserDetails(
-    val id: Long?,
-    val role: String?,
+    private val id: Long,
+    val role: String,
     var isAuthenticated: Boolean,
 ) : UserDetails {
 

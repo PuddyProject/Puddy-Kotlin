@@ -2,6 +2,7 @@ package world.puddy.core.global.config
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.http.HttpMethod
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
@@ -25,7 +26,7 @@ class SecurityConfig(
     fun filterChain(http: HttpSecurity): SecurityFilterChain = http.csrf { it.disable() }
         .sessionManagement { it.disable() }
         .authorizeHttpRequests {
-            it.requestMatchers("/questions/**").permitAll()
+            it.requestMatchers(HttpMethod.POST, "/questions/**").hasRole("USER")
                 .requestMatchers("/users/**").permitAll()
                 .anyRequest().permitAll()
         }

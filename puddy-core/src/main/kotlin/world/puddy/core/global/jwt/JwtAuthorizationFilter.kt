@@ -14,7 +14,10 @@ import world.puddy.core.global.auth.JwtUserDetails
 import world.puddy.core.global.error.exception.BusinessException
 
 @Component
-class JwtAuthorizationFilter : OncePerRequestFilter() {
+class JwtAuthorizationFilter(
+    private val jwtVerifier: JwtVerifier
+) : OncePerRequestFilter(
+) {
 
     override fun doFilterInternal(
         request: HttpServletRequest,
@@ -30,7 +33,7 @@ class JwtAuthorizationFilter : OncePerRequestFilter() {
         val token = authorizationHeader.replace(TOKEN_PREFIX, "")
         try {
             val context = SecurityContextHolder.createEmptyContext()
-            val decodedJWT = JwtVerifier.verify(token)
+            val decodedJWT = jwtVerifier.verify(token)
             val jwtUserDetails = JwtUserDetails(decodedJWT)
             val authentication = UsernamePasswordAuthenticationToken(jwtUserDetails, null, jwtUserDetails.authorities)
             context.authentication = authentication
