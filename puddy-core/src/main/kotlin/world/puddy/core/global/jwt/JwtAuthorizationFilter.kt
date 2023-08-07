@@ -16,9 +16,7 @@ import world.puddy.core.global.error.exception.BusinessException
 @Component
 class JwtAuthorizationFilter(
     private val jwtVerifier: JwtVerifier
-) : OncePerRequestFilter(
-) {
-
+) : OncePerRequestFilter() {
     override fun doFilterInternal(
         request: HttpServletRequest,
         response: HttpServletResponse,

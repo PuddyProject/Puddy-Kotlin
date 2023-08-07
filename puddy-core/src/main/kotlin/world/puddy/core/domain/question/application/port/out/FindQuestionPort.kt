@@ -7,5 +7,4 @@ interface FindQuestionPort {
     fun findQuestion(id: Long): Question
 
     fun findQuestionList(page: Pageable, keyword: String, sort: String): List<Question>
-
 }
