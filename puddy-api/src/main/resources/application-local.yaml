@@ -1,5 +1,5 @@
 server:
-  port: 8081
+  port: 8080
 
 spring:
   data:
@@ -9,9 +9,9 @@ spring:
       url: redis://localhost:6379
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: ENC(lOCMoxE407KbvSjisofm+lrpzqJMrllrnXd8ZPkK3hLmuSNap+n/4IYJjJFSrTh1)
-    username: ENC(Y5/pJ1BbrmIkL0eY4ALTHQ==)
-    password: ENC(gFJFN9hTRoLb/iIxeT3ZPw==)
+    url: ENC(BtWTNPwpnT9Dbqz6V+ggMY3+Kgd+OFO+1+UlkWbaWy/Szn31k581aouxBQ0QcwZoLMvUcbg/yUtwQmtvAe7yDyAwl7HX7Vu/QOu3qq5naKFIob3QfpKPQ15R6AUHk0LjKX9cjDr7as4=)
+    username: ENC(d1SuNMG29PZwhu0qUgGFiA==)
+    password: ENC(KuuolL7rXCj/j35wXgOMUg==)
   jpa:
     hibernate:
       ddl-auto: create

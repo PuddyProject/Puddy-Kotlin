@@ -1,0 +1,5 @@
+spring:
+  data:
+    redis:
+      host: ENC(mvKHBkrMmH2lFS32zyGmTy0qn/DYZoOQd1bj1lu6Y1NhdR7UlNMEMXPMsnrsdJ+r8PhBAbVN75Onrud/+red9g==)
+      port: 6379
