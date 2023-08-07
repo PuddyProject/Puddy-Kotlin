@@ -1,15 +1,8 @@
 package world.puddy.core.domain.user.domain
 
-import jakarta.persistence.AttributeOverride
-import jakarta.persistence.Column
-import jakarta.persistence.Embedded
-import jakarta.persistence.Entity
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.GenerationType
-import jakarta.persistence.Id
-import jakarta.persistence.Table
-import world.puddy.common.error.ErrorCode
-import world.puddy.common.error.exception.UnidentifiedUserException
+import jakarta.persistence.*
+import world.puddy.core.global.error.ErrorCode
+import world.puddy.core.global.error.exception.UnidentifiedUserException
 import world.puddy.core.global.jpa.BaseEntity
 
 @Entity

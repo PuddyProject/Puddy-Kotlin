@@ -1,7 +1,7 @@
 package world.puddy.core.domain.question.domain
 
 import jakarta.persistence.*
-import world.puddy.common.error.exception.UnauthorizedException
+import world.puddy.core.global.error.exception.UnauthorizedException
 import world.puddy.core.global.jpa.BaseEntity
 
 @Entity
