@@ -10,7 +10,7 @@ import jakarta.persistence.Id
 import jakarta.persistence.Table
 import world.puddy.common.error.ErrorCode
 import world.puddy.common.error.exception.UnidentifiedUserException
-import world.puddy.common.jpa.BaseEntity
+import world.puddy.core.global.jpa.BaseEntity
 
 @Entity
 @Table(name = "users")

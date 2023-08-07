@@ -10,7 +10,7 @@ import world.puddy.core.domain.question.application.port.out.RegisterQuestionPor
 @Transactional
 class RegisterQuestionService(
     private val registerQuestionPort: RegisterQuestionPort
-) : world.puddy.core.domain.question.application.port.`in`.RegisterQuestionUseCase {
+) : RegisterQuestionUseCase {
 
     override fun registerQuestion(command: RegisterQuestionCommand): Long {
         return registerQuestionPort.registerQuestion(command)
