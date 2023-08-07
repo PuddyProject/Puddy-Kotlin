@@ -1,10 +1,23 @@
 package world.puddy.core.domain.user.adapter.out.persistence
 
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Repository
-import org.springframework.transaction.annotation.Transactional
+import world.puddy.core.domain.user.application.port.out.FindUserPort
+import world.puddy.core.domain.user.application.port.out.JoinUserPort
+import world.puddy.core.domain.user.domain.User
+import world.puddy.core.global.error.exception.UserNotFoundException
 
 @Repository
-@Transactional
 class UserPersistenceAdapter(
-    private val userRepository: UserRepository
-)
+    private val userJpaRepository: UserJpaRepository
+) : JoinUserPort, FindUserPort {
+    override fun saveUser(user: User) = userJpaRepository.save(user).id
+
+    override fun getUserById(id: Long): User {
+        return userJpaRepository.findByIdOrNull(id)?: throw UserNotFoundException()
+    }
+
+    override fun getUserByAccount(account: String): User {
+        return userJpaRepository.findByAccount(account)?: throw UserNotFoundException()
+    }
+}
