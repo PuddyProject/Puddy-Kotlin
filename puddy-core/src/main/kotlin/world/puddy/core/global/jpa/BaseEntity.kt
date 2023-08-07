@@ -1,4 +1,4 @@
-package world.puddy.common.jpa
+package world.puddy.core.global.jpa
 
 import jakarta.persistence.Column
 import jakarta.persistence.EntityListeners
