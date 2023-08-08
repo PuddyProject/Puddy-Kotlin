@@ -1,5 +1,6 @@
-package world.puddy.domain.user
+package world.puddy.api.domain.user
 
+import world.puddy.api.user.JoinUserRequest
 import world.puddy.core.domain.user.application.port.`in`.JoinUserCommand
 import world.puddy.core.domain.user.application.port.`in`.LoginUserCommand
 import world.puddy.core.domain.user.domain.Password
@@ -9,6 +10,14 @@ import world.puddy.core.global.jwt.CreateTokenCommand
 import world.puddy.core.global.jwt.LoginToken
 
 object UserFixture {
+
+    fun joinUserRequest() = JoinUserRequest(
+        account = "test",
+        username = "test",
+        email = "test@test.com",
+        password = "1234",
+        notificated = true,
+    )
     fun joinUserCommand(email: String) = JoinUserCommand(
         account = "test",
         username = "test",

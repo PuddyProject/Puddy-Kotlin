@@ -1,4 +1,4 @@
-package world.puddy.domain.user.application
+package world.puddy.api.domain.user.application
 
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.BehaviorSpec
@@ -10,7 +10,7 @@ import world.puddy.core.global.error.ErrorCode
 import world.puddy.core.global.error.exception.DuplicateRegisterException
 import world.puddy.core.global.error.exception.UnidentifiedUserException
 import world.puddy.core.global.jwt.JwtTokenProvider
-import world.puddy.domain.user.UserFixture
+import world.puddy.api.domain.user.UserFixture
 
 class UserServiceTest : BehaviorSpec({
 
@@ -24,6 +24,7 @@ class UserServiceTest : BehaviorSpec({
             val command = UserFixture.joinUserCommand("test@test.com")
             every { findUserPort.existsByAccount("test") } returns false
             every { joinUserPort.saveUser(any()) } returns 1L
+
             then("회원 가입이 완료된다") {
                 userService.join(command)
                 verify(exactly = 1) { findUserPort.existsByAccount("test") }
@@ -35,6 +36,7 @@ class UserServiceTest : BehaviorSpec({
         `when`("이미 가입된 계정이면") {
             val command = UserFixture.joinUserCommand("test@test.com")
             every { findUserPort.existsByAccount("test") } returns true
+
             then("회원 가입이 실패한다") {
                 shouldThrow<DuplicateRegisterException> {
                     userService.join(command)
@@ -51,6 +53,7 @@ class UserServiceTest : BehaviorSpec({
             val user = spyk(UserFixture.user("1234"))
             every { findUserPort.getUserByAccount("test") } returns user
             every { user.authenticate(any()) } throws UnidentifiedUserException(ErrorCode.INVALID_PASSWORD)
+
             then("로그인이 실패한다") {
                 shouldThrow<UnidentifiedUserException> {
                     userService.login(command)
@@ -67,13 +70,12 @@ class UserServiceTest : BehaviorSpec({
             val loginToken = UserFixture.loginToken()
             every { findUserPort.getUserByAccount(any()) } returns user
             every { jwtTokenProvider.createToken(any()) } returns loginToken
+
             then("로그인이 성공한다.") {
                 userService.login(command)
                 verify(exactly = 1) { findUserPort.getUserByAccount("test") }
                 verify(exactly = 1) { jwtTokenProvider.createToken(any()) }
             }
         }
-
-
     }
 })
