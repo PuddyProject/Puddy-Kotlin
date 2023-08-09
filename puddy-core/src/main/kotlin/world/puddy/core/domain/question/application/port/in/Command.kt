@@ -33,4 +33,13 @@ data class EditQuestionCommand(
 data class DeleteQuestionCommand(
     val questionId: Long,
     val memberId: Long
-)
+) {
+    companion object {
+        @JvmStatic
+        fun from(questionId: Long, memberId: Long) =
+            DeleteQuestionCommand(
+                questionId = questionId,
+                memberId = memberId
+            )
+    }
+}
