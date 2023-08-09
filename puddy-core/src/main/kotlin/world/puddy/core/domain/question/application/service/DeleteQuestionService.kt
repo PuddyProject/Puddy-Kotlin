@@ -15,7 +15,7 @@ class DeleteQuestionService(
 ) : DeleteQuestionUseCase {
     override fun deleteQuestion(command: DeleteQuestionCommand) {
         val question = findQuestionPort.findQuestion(command.questionId)
-        question.verify(command.memberId)
+        question.assertOwnedBy(command.memberId)
         deleteQuestionPort.deleteQuestion(command.questionId)
     }
 }
