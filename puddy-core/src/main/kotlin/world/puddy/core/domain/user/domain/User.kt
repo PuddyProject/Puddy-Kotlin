@@ -11,16 +11,15 @@ import world.puddy.core.global.jpa.BaseEntity
 class User(
 
     @Embedded
-    var information: UserInformation,
+    private var information: UserInformation,
 
     @AttributeOverride(name = "value", column = Column(name = "password", nullable = false))
     @Embedded
-    var password: Password,
+    private var password: Password,
 
     @NotNull
     @Column(name = "role")
-    @Enumerated(EnumType.STRING)
-    var role: UserRole,
+    @Enumerated(EnumType.STRING) var role: UserRole,
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
