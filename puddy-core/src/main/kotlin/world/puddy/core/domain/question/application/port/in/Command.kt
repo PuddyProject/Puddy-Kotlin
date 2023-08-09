@@ -29,3 +29,8 @@ data class EditQuestionCommand(
     val memberId: Long,
     val questionId: Long
 )
+
+data class DeleteQuestionCommand(
+    val questionId: Long,
+    val memberId: Long
+)
