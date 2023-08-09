@@ -36,7 +36,7 @@ class Question(
         return this.id
     }
 
-    fun verify(memberId: Long) {
+    fun assertOwnedBy(memberId: Long) {
         if (this.memberId != memberId) {
             throw UnauthorizedException()
         }
