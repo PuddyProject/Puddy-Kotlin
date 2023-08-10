@@ -41,3 +41,7 @@ data class UnauthorizedException(
 data class EmailSendException(
     override val errorCode: ErrorCode = ErrorCode.EMAIL_SEND_FAIL
 ) : BusinessException(errorCode)
+
+data class ImageNotFoundException(
+    override val errorCode: ErrorCode = ErrorCode.IMAGE_NOT_FOUND
+) : BusinessException(errorCode)
