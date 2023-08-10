@@ -8,10 +8,10 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
 @Configuration
-class JasyptConfig(
+class JasyptConfig {
     @Value("\${jasypt.encryptor.password}")
-    private val password: String
-) {
+    private lateinit var password: String
+
     @Bean("jasyptStringEncryptor")
     fun stringEncryptor(): StringEncryptor {
         val encryptor = PooledPBEStringEncryptor()
