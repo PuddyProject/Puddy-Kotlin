@@ -12,13 +12,13 @@ import org.springframework.context.annotation.Configuration
 class S3Config {
 
     @Value("\${cloud.aws.credentials.access-key}")
-    private val accessKey: String? = null
+    private lateinit var accessKey: String
 
     @Value("\${cloud.aws.credentials.secret-key}")
-    private val secretKey: String? = null
+    private lateinit var secretKey: String
 
     @Value("\${cloud.aws.region.static}")
-    private val region: String? = null // Bucket Region
+    private lateinit var region: String // Bucket Region
 
     @Bean
     fun amazonS3Client(): AmazonS3Client {
