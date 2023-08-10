@@ -14,14 +14,14 @@ jasypt:
 cloud:
   aws:
     credentials:
-      access-key: ENC(RhrvH0WDF8iUyLbYo8GhHGvtGkgXYgxKVyExHiU8WqU=)
-      secret-key: ENC(CBXSxecabu5dHhwxHE85cEnuzChL0vNVTig8szl1ErrgeQSTO4Xfc61e6vK+JrDEDUvlRgss5fg=)
+      access-key: ENC(JPJP3xGryfr7BOeyE7fGSrEU7mbIALuM4+zS1u6ktsM=)
+      secret-key: ENC(J/FWXsaZz2e8TzbvBeU3CjC1EwoXfHiStRwbONeTnsjmNjySVpNL1KLUkXNE+E607oViUUzSYWg=)
     stack:
       auto: false
     region:
       static: ap-northeast-2
     s3:
-      bucket: puddybucket
+      bucket: puddy-bucket
 jwt:
   secret-key: ENC(qBptcytc75l909BnyVcmGxm8E/7EI48ZTpHCkluUA5f5FNT3VvfOtmHdHfubfmhwa8wqyeVvSImInp65qdCie1eH8jOTvdsdzYiFeFCUai8=)
 
