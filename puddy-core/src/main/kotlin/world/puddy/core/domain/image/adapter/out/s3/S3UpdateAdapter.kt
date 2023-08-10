@@ -15,16 +15,20 @@ class S3UpdateAdapter(
     private val amazonS3Client: AmazonS3Client
 ) {
 
-    @Value("\${cloud.aws.s3.bucket.name}")
+    @Value("\${cloud.aws.s3.bucket}")
     private lateinit var bucketName: String
 
-    fun uploadToS3(command: UploadFileCommand): String {
+    fun uploadToS3(command: UploadFileCommand): S3ImageInfomation {
         val metadata = createMetaDate(command.file)
+        val storedName = convertToStoredName(command.fileName)
         amazonS3Client.putObject(
-            PutObjectRequest(bucketName, command.folderName + "/" + command.fileName, command.file.inputStream, metadata)
+            PutObjectRequest(bucketName, command.folderName + "/" + storedName, command.file.inputStream, metadata)
                 .withCannedAcl(CannedAccessControlList.PublicRead)
         )
-        return amazonS3Client.getUrl(bucketName, command.folderName + "/" + command.fileName).toString()
+        return S3ImageInfomation(
+            storedName,
+            amazonS3Client.getUrl(bucketName, command.folderName + "/" + command.fileName).toString()
+        )
     }
 
     protected fun createMetaDate(file: MultipartFile): ObjectMetadata {
@@ -32,5 +36,9 @@ class S3UpdateAdapter(
         objectMetaData.contentType = file.contentType
         objectMetaData.contentLength = file.size
         return objectMetaData
+    }
+
+    private fun convertToStoredName(originalName: String): String {
+        return UUID.randomUUID().toString() + originalName
     }
 }
