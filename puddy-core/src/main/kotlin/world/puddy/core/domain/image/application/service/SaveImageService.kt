@@ -8,32 +8,25 @@ import world.puddy.core.domain.image.application.port.`in`.SaveImageUseCase
 import world.puddy.core.domain.image.application.port.out.SaveImageCommand
 import world.puddy.core.domain.image.application.port.out.SaveImagePort
 import world.puddy.core.domain.image.domain.Image
-import java.util.*
 
 @Service
 @Transactional
 class SaveImageService(
     private val saveImagePort: SaveImagePort,
     private val s3UpdateAdapter: S3UpdateAdapter,
-
-    ) : SaveImageUseCase {
+) : SaveImageUseCase {
 
     override fun saveImage(command: SaveImageCommand) {
         command.images.forEach {
-            val imageUrl = s3UpdateAdapter.uploadToS3(
+            val imageInformation = s3UpdateAdapter.uploadToS3(
                 UploadFileCommand.of(it, it.originalFilename!!, QUESTION_FOLDER)
             )
             Image(
-                imagePath = imageUrl,
+                imagePath = imageInformation.imagePath,
                 originalName = it.originalFilename!!,
-                storedName = convertToStoredName(it.originalFilename!!)
-            )
-                .let { image -> saveImagePort.saveImage(image) }
+                storedName = imageInformation.storedName
+            ).let { image -> saveImagePort.saveImage(image) }
         }
-    }
-
-    private fun convertToStoredName(originalName: String): String {
-        return UUID.randomUUID().toString() + originalName
     }
 
     companion object {
