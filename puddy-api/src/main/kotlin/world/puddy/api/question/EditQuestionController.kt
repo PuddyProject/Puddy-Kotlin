@@ -1,9 +1,11 @@
 package world.puddy.api.question
 
 import org.springframework.http.MediaType
+import org.springframework.security.core.annotation.AuthenticationPrincipal
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.multipart.MultipartFile
 import world.puddy.core.domain.question.application.port.`in`.EditQuestionUseCase
+import world.puddy.core.global.auth.JwtUserDetails
 import world.puddy.core.global.response.Response
 
 @RestController
@@ -19,5 +21,6 @@ class EditQuestionController(
         @PathVariable("questionId") questionId: Long,
         @RequestPart("request") request: EditQuestionRequest,
         @RequestPart("images", required = false) images: List<MultipartFile>,
-    ) = Response.ok(editQuestionUseCase.editQuestion(request.toCommand(questionId, 1L)))
+        @AuthenticationPrincipal user: JwtUserDetails
+    ) = Response.ok(editQuestionUseCase.editQuestion(request.toCommand(questionId, user.userId!!, images)))
 }

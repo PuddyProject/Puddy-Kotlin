@@ -30,12 +30,14 @@ data class EditQuestionRequest(
     val title: String,
     val content: String,
     val category: String,
+    val images: List<MultipartFile>?,
 ) {
-    fun toCommand(questionId: Long, memberId: Long) = EditQuestionCommand(
+    fun toCommand(questionId: Long, memberId: Long, images: List<MultipartFile>?) = EditQuestionCommand(
         title = title,
         content = content,
         category = category,
         questionId = questionId,
-        memberId = memberId
+        memberId = memberId,
+        images = images,
     )
 }

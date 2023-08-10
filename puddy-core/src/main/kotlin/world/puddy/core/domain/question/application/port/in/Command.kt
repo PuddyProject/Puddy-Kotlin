@@ -27,7 +27,8 @@ data class EditQuestionCommand(
     val content: String,
     val category: String,
     val memberId: Long,
-    val questionId: Long
+    val questionId: Long,
+    val images: List<MultipartFile>?
 )
 
 data class DeleteQuestionCommand(
