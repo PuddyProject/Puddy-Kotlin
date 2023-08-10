@@ -6,4 +6,11 @@ data class UploadFileCommand(
     val file: MultipartFile,
     val fileName: String,
     val folderName: String
-)
+) {
+    companion object {
+        @JvmStatic
+        fun of(file: MultipartFile, fileName: String, folderName: String): UploadFileCommand {
+            return UploadFileCommand(file, fileName, folderName)
+        }
+    }
+}
