@@ -1,6 +1,7 @@
 package world.puddy.core.domain.question.domain
 
 import jakarta.persistence.*
+import world.puddy.core.domain.image.domain.Image
 import world.puddy.core.global.error.exception.UnauthorizedException
 import world.puddy.core.global.jpa.BaseEntity
 
@@ -14,10 +15,12 @@ class Question(
     @Column(name = "title", length = 50) var title: String,
 
     @Lob
-    @Column(name = "content") var content: String,
+    @Column(name = "content")
+    var content: String,
 
     @Column(name = "category")
-    @Enumerated(EnumType.STRING) var category: Category,
+    @Enumerated(EnumType.STRING)
+    var category: Category,
 
     val postCategory: Int,
 
@@ -27,6 +30,10 @@ class Question(
     val id: Long = 0L
 
 ) : BaseEntity() {
+
+    @OneToMany
+    @JoinColumn(name = "image_id")
+    val images: MutableList<Image> = mutableListOf()
 
     fun edit(title: String, content: String, category: String): Long {
         this.title = title
@@ -40,5 +47,9 @@ class Question(
         if (this.memberId != memberId) {
             throw UnauthorizedException()
         }
+    }
+
+    fun addImage(image: Image) {
+        this.images.add(image)
     }
 }
