@@ -3,7 +3,6 @@ package world.puddy.core.domain.question.adapter.out.persistence
 import org.springframework.data.domain.Pageable
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Repository
-import world.puddy.core.domain.question.application.port.`in`.RegisterQuestionCommand
 import world.puddy.core.domain.question.application.port.out.DeleteQuestionPort
 import world.puddy.core.domain.question.application.port.out.FindQuestionPort
 import world.puddy.core.domain.question.application.port.out.RegisterQuestionPort
@@ -17,8 +16,8 @@ class QuestionPersistenceAdapter(
     FindQuestionPort,
     DeleteQuestionPort {
 
-    override fun registerQuestion(command: RegisterQuestionCommand): Long =
-        questionRepository.save(command.toEntity()).id
+    override fun registerQuestion(question: Question): Long =
+        questionRepository.save(question).id
 
     override fun findQuestion(id: Long): Question {
         return questionRepository.findByIdOrNull(id) ?: throw QuestionNotFoundException()
