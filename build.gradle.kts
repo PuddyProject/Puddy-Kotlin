@@ -82,9 +82,7 @@ subprojects {
         testImplementation("io.kotest:kotest-runner-junit5-jvm:5.6.2")
         testImplementation("io.mockk:mockk:1.13.5")
         // kotlin jdsl
-        implementation("com.linecorp.kotlin-jdsl:spring-data-kotlin-jdsl-core-jakarta:2.2.1.RELEASE")
-        implementation("com.linecorp.kotlin-jdsl:kotlin-jdsl-query-jakarta:2.2.1.RELEASE")
-        implementation("com.linecorp.kotlin-jdsl:spring-data-kotlin-jdsl-autoconfigure-jakarta:2.2.1.RELEASE")
+        implementation("com.linecorp.kotlin-jdsl:spring-data-kotlin-jdsl-starter-jakarta:2.2.1.RELEASE")
 
 
 
