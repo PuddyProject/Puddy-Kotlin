@@ -81,11 +81,12 @@ subprojects {
         testImplementation("io.kotest:kotest-assertions-core-jvm:5.6.2")
         testImplementation("io.kotest:kotest-runner-junit5-jvm:5.6.2")
         testImplementation("io.mockk:mockk:1.13.5")
+
+        // test fixture
+        testImplementation("com.navercorp.fixturemonkey:fixture-monkey-starter-kotlin:0.6.3")
+
         // kotlin jdsl
         implementation("com.linecorp.kotlin-jdsl:spring-data-kotlin-jdsl-starter-jakarta:2.2.1.RELEASE")
-
-
-
 
         // redis
         implementation("org.springframework.boot:spring-boot-starter-data-redis")
