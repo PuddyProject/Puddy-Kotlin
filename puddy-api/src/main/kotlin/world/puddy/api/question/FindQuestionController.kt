@@ -4,6 +4,7 @@ import org.springframework.data.domain.PageRequest
 import org.springframework.data.domain.Pageable
 import org.springframework.web.bind.annotation.*
 import world.puddy.core.domain.question.application.port.`in`.FindQuestionUseCase
+import world.puddy.core.domain.question.application.service.FindQuestionListResponse
 import world.puddy.core.domain.question.application.service.FindQuestionResponse
 import world.puddy.core.global.response.Response
 
@@ -22,7 +23,7 @@ class FindQuestionController(
         @RequestParam(value = "keyword", defaultValue = "") keyword: String,
         @RequestParam(value = "sort", defaultValue = "desc") sort: String,
         @RequestParam(value = "page", defaultValue = "0") page: Int,
-    ): Response<List<FindQuestionResponse>> {
+    ): Response<FindQuestionListResponse> {
         val pageable: Pageable = PageRequest.of(page - DEFAULT_PAGE, DEFAULT_PAGE_SIZE)
         return Response.ok(findQuestionUseCase.findQuestionList(pageable, keyword, sort))
     }

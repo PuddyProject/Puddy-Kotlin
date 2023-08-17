@@ -14,8 +14,9 @@ class FindQuestionService(
     override fun findQuestion(id: Long): FindQuestionResponse =
         FindQuestionResponse.of(findQuestionPort.findQuestion(id))
 
-    override fun findQuestionList(page: Pageable, keyword: String, sort: String): List<FindQuestionResponse> =
+    override fun findQuestionList(page: Pageable, keyword: String, sort: String): FindQuestionListResponse =
         findQuestionPort.findQuestionList(page, keyword, sort).let {
-            it.map { question -> FindQuestionResponse.of(question) }
+            val responseDto = it.map { question -> FindQuestionResponse.of(question) }
+            FindQuestionListResponse.from(responseDto)
         }
 }
