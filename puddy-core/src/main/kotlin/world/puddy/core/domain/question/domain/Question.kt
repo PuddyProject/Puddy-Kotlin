@@ -49,7 +49,7 @@ class Question(
         }
     }
 
-    fun addImage(image: Image) {
-        this.images.add(image)
+    fun addImage(image: List<Image>) {
+        this.images.addAll(image)
     }
 }
