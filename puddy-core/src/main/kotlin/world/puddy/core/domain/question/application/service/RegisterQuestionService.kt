@@ -21,6 +21,7 @@ class RegisterQuestionService(
             val imageList = saveImageUseCase.saveImage(SaveImageCommand.of(it))
             question.addImage(imageList)
         }
+        registerQuestionPort.registerQuestion(question)
         return question.id
     }
 }
