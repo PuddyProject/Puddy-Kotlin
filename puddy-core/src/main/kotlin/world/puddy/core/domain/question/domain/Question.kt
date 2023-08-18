@@ -24,16 +24,20 @@ class Question(
 
     val postCategory: Int,
 
+    @OneToMany(fetch = FetchType.LAZY, cascade = [CascadeType.ALL], orphanRemoval = true)
+    @JoinTable(
+        name = "question_image",
+        joinColumns = [JoinColumn(name = "question_id")],
+        inverseJoinColumns = [JoinColumn(name = "image_id")]
+    )
+    val images: MutableList<Image> = mutableListOf(),
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "question_id")
     val id: Long = 0L
 
 ) : BaseEntity() {
-
-    @OneToMany
-    @JoinColumn(name = "image_id")
-    val images: MutableList<Image> = mutableListOf()
 
     fun edit(title: String, content: String, category: String): Long {
         this.title = title
