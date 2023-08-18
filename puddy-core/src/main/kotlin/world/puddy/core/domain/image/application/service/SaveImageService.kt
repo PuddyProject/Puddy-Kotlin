@@ -16,8 +16,8 @@ class SaveImageService(
     private val s3UpdateAdapter: S3UpdateAdapter,
 ) : SaveImageUseCase {
 
-    override fun saveImage(command: SaveImageCommand) {
-        command.images.forEach {
+    override fun saveImage(command: SaveImageCommand): List<Image> {
+        return command.images.map {
             val imageInformation = s3UpdateAdapter.uploadToS3(
                 UploadFileCommand.of(it, it.originalFilename!!, QUESTION_FOLDER)
             )
@@ -25,7 +25,7 @@ class SaveImageService(
                 imagePath = imageInformation.imagePath,
                 originalName = it.originalFilename!!,
                 storedName = imageInformation.storedName
-            ).let { image -> saveImagePort.saveImage(image) }
+            ).also { image -> saveImagePort.saveImage(image) }
         }
     }
 

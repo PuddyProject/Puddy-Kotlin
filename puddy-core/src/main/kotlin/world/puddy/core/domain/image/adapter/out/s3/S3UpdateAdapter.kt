@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component
 import org.springframework.web.multipart.MultipartFile
 import java.util.*
 
-
 @Component
 class S3UpdateAdapter(
     private val amazonS3Client: AmazonS3Client
