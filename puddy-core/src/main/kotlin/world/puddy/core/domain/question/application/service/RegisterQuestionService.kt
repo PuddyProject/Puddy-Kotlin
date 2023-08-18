@@ -16,9 +16,11 @@ class RegisterQuestionService(
 ) : RegisterQuestionUseCase {
 
     override fun registerQuestion(command: RegisterQuestionCommand): Long {
+        val question = registerQuestionPort.registerQuestion(command.toEntity())
         command.images?.let {
-            saveImageUseCase.saveImage(SaveImageCommand.of(it))
+            val imageList = saveImageUseCase.saveImage(SaveImageCommand.of(it))
+            question.addImage(imageList)
         }
-        return registerQuestionPort.registerQuestion(command)
+        return question.id
     }
 }
