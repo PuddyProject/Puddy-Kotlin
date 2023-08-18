@@ -4,5 +4,5 @@ import world.puddy.core.domain.question.domain.Question
 
 interface RegisterQuestionPort {
 
-    fun registerQuestion(question: Question): Long
+    fun registerQuestion(question: Question): Question
 }
