@@ -42,7 +42,7 @@ class Question(
     fun edit(title: String, content: String, category: String): Long {
         this.title = title
         this.content = content
-        this.category = world.puddy.core.domain.question.domain.Category.valueOf(category)
+        this.category = Category.valueOf(category)
 
         return this.id
     }
